@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMPub Scholarly</title>
+    <style>
+        body{
+            /*font-size: large;*/
+            max-width: 720px;
+            margin: auto;
+        }
+        body h2{
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Docuent Scholarly pentru aplicația web EMPub</h1>
+    <h2>Descriere generală</h2>
+    <section>
+        <h3>2.1 Perspectiva produsului</h3>
+        <p>
+            Această aplicație web a fost dezvoltată la cererea domnului profesor Sabin Corneliu Buraga, și a fost aleasă in scop didactic dintre un număr de propuneri de aplicații web care au fost deja perfecționate sub alte forme în industria web.
+        </p>
+        <p>
+            La nivel macro, aplicația are 3 componente: o aplicație web care servește clientului informațiile relevante dintr-o bază de date, baza de date propriu-zisă, și un script care gestionează contul de email aferent acestei aplicații.
+        </p>
+    </section>
+    <section>
+        <h3>
+            2.2 Funcțiile produsului
+        </h3>
+        <p>
+            Aplicația îi permite oricărui utilizator să se autentifice și să creeze, în propriul nume, postări de tip blog prin trimiterea unui mail cu titlul și continutul postării către o adresa de email controlată de bot-ul de email antemenționat, sau direct prin intermediul unui formular accesibil pe site-ul web.
+        </p>
+        <p>
+            Proprietarul unei postări poate modifica vizibilitatea acesteia prin intermediul unei parole de acces, prin intermediul căreia, doar utilizatorii ce dețin parola postării o pot vedea. Postările, fie că au fost publicate sau nu, pot fi șterse oricând, la alegerea proprietarului.
+        </p>
+        <p>
+            Din perspectiva opusă, orice utilizator poate vizualiza neautentificat orice postare la care are acces. Cititorii pot filtra postările vizibile în funcție de data postării, sau pot introduce o parolă pentru a putea vizualiza postările astfel protejate.
+        </p>
+        <p>
+            Cititorii autentificați au opțiunea de a salva postările favorite în mod privat, similar cu procedeul de bookmarking.
+        </p>
+    </section>
+    <section>
+        <h3>
+            2.3 Clasele și caracteristicile utilizatorilor
+        </h3>
+        <p>
+            Principalele două categorii de utilizatori care vor interacționa cu aplicația sunt scriitorii și cititorii. Scriitorii reprezintă utilizatorii care vor publica postări pe site-ul web, folosind metodele disponibile, iar cititorii reprezintă utilizatorii care vor vizualiza postările publicate de scriitori. 
+        </p>
+        <p>
+            Scriitorii, impliciat autentificați, au acces la opțiunea de a crea postări și de a le proteja cu o parolă, sau a le șterge. Postările nefinalizate sunt vizibile doar proprietarului, iar postările finalizate sunt vizibile tuturor utilizatorilor care au acces.
+        </p>
+        <p>
+            Cititorii, care pot fi fie autentificați, fie nu, au acces la postările publicate de scriitori, dacă acestea sunt publice, sau daca cititorul în cauză are acces la parola impusă de scriitor. Cititorii autentificați au posibilitatea de a salva postările preferate.
+        </p>
+    </section>
+    <section>
+        <h3>
+            2.4 Mediu de operare
+        </h3>
+        <p>
+            Aplicația web va rula în sistemul de operare Raspbian, bazat pe Debian Linux<a href="#ref-raspbian"><sup>[1]</sup></a>, pe un dispozitiv de tip Raspberry Pi. Componentele vor folosi PHP pentru serverul web, MariaDB pentru baza de date, și Java Runtime Environment pentru bot-ul care gestioneaza email-urile primite. Pentru a asigura un mediu steril, poate fi decisă de către echipa de dezvoltare la un moment ulterior folosirea containerelor Docker pentru a opera individual componentele aplicației.
+        </p>
+    </section>
+    <section>
+        <h3>
+            2.5 Constrângeri de design și implementare
+        </h3>
+        <p>
+            Dată fiind concentrarea cursului pe studiul tehnologiilor web clasice, proiectul este limitat la a folosi PHP, MySQL și Apache. În ce privesc constrângerile de design, acesta trebuie să fie intuitiv, pentru a transmite clar utilizatorilor modul de funcționare.
+        </p>
+        <p>
+            Aplicația va trebui să fie compatibilă cu diverse tehnologii de comunicare cu alte protocoale, cum ar fi POP3 și IMAP pentru email. Ca model de mentenanță, aceasta le aparține dezvoltatorilor proiectului.
+        </p>
+    </section>
+    <section>
+        <h3>
+            2.6 Documentația pentru utilizator
+        </h3>
+        <p>
+            Dată fiind simplitatea acestui proiect, acest document servește drept documentația menită utilizatorului.
+        </p>
+    </section>
+    <section>
+        <h3>
+            2.7 Presupuneri și dependențe
+        </h3>
+        <p>
+            (Nu știu ce să pun aici sincer)
+        </p>    
+        <p>
+
+        </p>
+    </section>
+
+
+
+    <section id="references">
+        <h2>Referințe și bibliografie</h2>
+        <li id="ref-raspbian"><sup>[1]</sup><a href="https://raspbian.org">raspbian.org</a>, the Raspberry Pi Foundation</li>
+    </section>
+</body>
+</html>
