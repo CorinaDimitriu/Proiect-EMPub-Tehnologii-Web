@@ -81,7 +81,7 @@
             Aplicația îi permite oricărui utilizator să se autentifice și să creeze, în propriul nume, postări de tip blog prin trimiterea unui mail cu titlul și conținutul postării către o adresă de email controlată de bot-ul de email antemenționat, sau direct prin intermediul unui formular accesibil pe site-ul web.
         </p>
         <p>
-            Proprietarul unei postări poate modifica vizibilitatea acesteia prin intermediul unei parole de acces, prin intermediul căreia, doar utilizatorii ce dețin parola postării o pot vedea. Postările, fie că au fost publicate sau nu, pot fi șterse oricând, la alegerea proprietarului.
+            Proprietarul unei postări poate modifica vizibilitatea acesteia prin intermediul unei parole de acces, prin intermediul căreia, doar utilizatorii ce dețin parola postării o pot vedea. Postările, fie că au fost publicate sau nu, pot fi șterse oricând, la alegerea proprietarului. După introducerea corectă a parolei, un token temporar pentru sesiunea respectivă va fi stocat in cookie-urile browser-ului clientului.
         </p>
         <p>
             Din perspectiva opusă, orice utilizator poate vizualiza neautentificat orice postare la care are acces. Cititorii pot filtra postările vizibile în funcție de data postării, sau pot introduce o parolă pentru a putea vizualiza postările astfel protejate.
@@ -238,7 +238,7 @@
                 Pentru a avea acces la funcționalitățile oferite de aplicația web EMPub, orice utilizator trebuie să fie capabil să se autentifice în aplicație prin intermediul unei adrese de email într-un mod simplu și rapid, dar și sigur pentru a beneficia cât mai curând de serviciile puse la dispoziție acestuia.
             </p>
             <p>
-                Acestă caracteristică a sistemului are propritate ridicată întrucât este necesar ca fiecare utilizator să aibă un cont unic asociat adresei de email furnizate la autentificare pentru a putea realiza diferite operații asupra email-urilor regăsite în acel cont.
+                Acestă caracteristică a sistemului are prioritate ridicată întrucât este necesar ca fiecare utilizator să aibă un cont unic asociat adresei de email furnizate la autentificare pentru a putea realiza diferite operații asupra email-urilor asociate cu acel cont.
             </p>
         </section>
         <section>
@@ -249,12 +249,15 @@
             </p>
             <ol>
                 <li>introduce o adresă validă de email cu care dorește să se autentifice și de pe care a trimis sau intenționează să trimită email-uri ce se doresc a fi publicate</li>
-                 <li>apasă butonul <i>Continue</i> ce îl va redirecționa pe pagina care cere completarea unui cod de verificare</li>
+                 <li>apasă butonul <i>Continue</i> ce îl va redirecționa pe pagina care cere introducerea unui cod de verificare</li>
                 <li>introduce codul de verificare primit pe adresa de email furnizată la pasul anterior</li>
                 <li>apasă butonul <i>Continue</i> ce îl va redirecționa pe pagina care cere selectarea țării de origine/reședință</li>
                 <li>selectează țara de origine/reședință din lista oferită</li>
                 <li>apasă buonul <i>Continue</i> ce îl va redirecționa pe pagina <i>All emails</i></li>
             </ol>
+            <p>
+                O metodă alternativă luată în considerare pentru obținerea țării de origine a utilizatorului este deducerea acesteia din adresa IP, folosind un API extern.
+            </p>
             <p>
                 Dacă email-ul furnizat nu este valid și/sau dacă codul de verificare introdus nu corespunde cu cel primit pe adresa de email furnizată, utilizatorul va fi notificat în acest sens în momentul în care apasă butonul <i>Continue</i> și nu va fi redirecționat către următoarea pagină până când nu introduce datele corecte corespunzătoare.
             </p>
@@ -275,12 +278,12 @@
                 Aplicația web permite utilizatorilor să publice anumite email-uri pe care aceștia le trimit către adresa controlată de aplicație, într-un mod simplu și rapid oricâtor persoane își doresc. La publicarea unui email utilizatorul decide și setează anumite proprietăți pentru acesta:
             </p>
             <ul>
-            <li>email-ul va fi public su privat</li>
+                <li>email-ul va fi public su privat</li>
                 <li>email-ul va avea sau nu o durată de timp aleasă de utiliztor în care va fi publicat</li>
                 <li>email-ul va avea o anumită parolă dacă acesta este privat.</li>
             </ul> 
             <p>
-                Acestă caracteristică a sistemului are propritate ridicată întrucât publicarea email-urilor este principalul scop al aplicației.
+                Acestă caracteristică a sistemului are prioritate ridicată întrucât publicarea email-urilor este principalul scop al aplicației.
             </p>
         </section>
         <section>
@@ -292,7 +295,7 @@
                 <li>trimiterea email-ului pe care dorește să îl publice cu ajutorul aplicației web EMPub la adresa *to be decided* controlată de aceasta</li>
                 <li>autentificarea în aplicație cu adresa de pe care s-a trimis email-ul ce se dorește a fi publicat</li>
                 <li>accesarea paginii <i>All emails</i> unde se va regăsi email-ul trimis la adresa controlată de aplicație</li>
-                <li>apăsarea butonului <i>send/publish???</i> ce va redirecționa utilizatorul către o pagină pentru setarea proprietăților email-ului ce se dorește a fi publicat</li>
+                <li>apăsarea butonului <i>send/publish</i> ce va redirecționa utilizatorul către o pagină pentru setarea proprietăților email-ului ce se dorește a fi publicat</li>
                 <li>setarea proprietăților email-ului ce se dorește a fi publicat &rarr; securitate, durata în ore, minute și secunde (doar dacă se selectează opțiunea <i>Yes</i> pentru durată) și parola (doar dacă se selectează opțiunea <i>Private</i> pentru securitate)</li>
                 <li>apăsarea butonului <i>Publish</i> ce va redirecționa utilizatorul către pagina cu link-ul furnizat pentru accesarea email-ului publicat</li>
                 <li>apăsarea butonului <i>Copy link</i> ce va copia link-ul furnizat și va redirecționa utlizatorul în pagina <i>Published emails</i>.</li>
