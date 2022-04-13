@@ -311,6 +311,11 @@ section p:first-of-type > a{
     }
 }
 
+section img {
+    display: flex;
+    align-self: flex-end;
+    float: right;
+}
 
 .first-email {
     grid-column: 1 / 4;
