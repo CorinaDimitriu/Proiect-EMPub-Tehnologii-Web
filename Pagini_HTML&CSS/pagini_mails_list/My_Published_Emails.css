@@ -301,9 +301,11 @@ section p:first-of-type > a{
     color: #16082f;
 }
 
-section:hover {
-    background-color: rgb(229, 223, 239);
-    transform: scale(104%);
+@media (hover: hover) {
+    section:hover {
+        background-color: rgb(229, 223, 239);
+        transform: scale(104%);
+    }
 }
 
 
