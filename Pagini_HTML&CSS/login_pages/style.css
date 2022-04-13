@@ -1,6 +1,7 @@
 html, body {
     margin: 0; 
     padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
   }
 
 html {
@@ -9,7 +10,7 @@ html {
 }
 
 body {
-    background: linear-gradient(15deg, rgba(148,170,205,1) 25%, rgba(156,106,236,1) 50%, rgba(208,90,237,1) 75%);
+    background: linear-gradient(30deg, rgb(154, 181, 230) 25%, rgb(172, 127, 243) 50%, rgb(197, 125, 255) 75%);
     background-attachment: fixed;
 
     margin-top: 50px;
@@ -56,7 +57,7 @@ body img[alt="star-with-text"] {
     display: none;
 }
 
-body .stars:hover img[alt="star-with-text"]{
+body img[alt="star"]:hover + img[alt="star-with-text"]{
     display: block;
 }
 
@@ -68,7 +69,7 @@ body p {
     padding-right: 20%;
 }
 
-body .stars:hover + p {
+body img[alt="star"]:hover ~ p {
     margin-top: 3vh;
 }
 
@@ -81,6 +82,7 @@ body form label {
 }
 
 body form input {
+    background-color: #EAEAEA;
     margin-top: 10px;
     border-radius: 20px;
     height: 8vh;
