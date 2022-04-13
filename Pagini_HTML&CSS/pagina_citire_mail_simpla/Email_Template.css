@@ -1,0 +1,161 @@
+header {
+    grid-column: 4 / 7;
+    grid-row: 1;
+    background-color: rgb(234,234,234);
+    align-self: flex-start;
+    position: relative;
+    margin-top: 0.75%;
+    transform: rotate(1.2deg);
+    border: 2px solid #16082f;
+    box-shadow: 5px 5px 3px #16082f, -2px -2px 3px #16082f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+main {
+    grid-column: 3 / 8;
+    grid-row: 2;
+}
+
+@media screen and (max-width: 1432px) and (min-width: 849px) {
+    header {
+        grid-column: 3 / 8;
+    }
+}
+
+@media screen and (max-width: 850px) and (min-width: 555px) {
+    header {
+        grid-column: 3 / 9;
+    }
+}
+
+@media screen and (max-width: 556px) and (min-width: 435px) {
+    header {
+        grid-column: 3 / 9;
+    }
+
+    .letter_layout {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 436px) and (min-width: 349px) {
+    .letter_layout{
+        font-size: 6px;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 350px) and (min-width: 219px) {
+    .letter_layout{
+        font-size: 4px;
+        flex-wrap: wrap;
+    }
+}
+
+header {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #000000;
+    border-color: #000000;
+    padding: 0.75%;
+}
+
+.letter_layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+header h1 {
+    font-size: 2em;
+}
+
+header p {
+    font-size: 1.7em;
+}
+
+header a{
+    text-decoration: none;
+    color: #000000;
+}
+
+@media (hover:hover) {
+    header a:hover {
+        font-size: 1.05em;
+    }
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2 / 9;
+    background-color: rgb(234,234,234);
+    font-size: 1em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #000000;
+    box-sizing: border-box;
+    border: 1px solid #16082f;
+    box-shadow: 2px 2px 5px #16082f, inset 3px 3px 3px #534a63;
+}
+
+@media screen and (max-width: 220px) and (min-width: 144px) {
+    article {
+        font-size: 2px;
+    }
+    .letter_layout {
+        font-size: 2px;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 145px) {
+    article {
+        font-size: 2px;
+    }
+    .letter_layout {
+        font-size: 1px;
+        flex-wrap: wrap;
+    }
+}
+
+.pinner {
+    align-self: flex-start;
+    display: flex;
+    transform: rotateZ(20deg);
+    grid-column: 2 / 3;
+    grid-row: 1;
+    height: 100%;
+}
+
+@media screen and (max-width: 751px) {
+    .pinner {
+        display: none;
+    }
+}
+
+.pinner img{
+    height: 100%;
+    position: relative;
+    margin-top: 110%;
+    margin-left: 75%;
+}
+
+.paras {
+    padding: 1% 2% 2%;
+}
+
+.image_displayer {
+    display: inline;
+    padding: 0% 2%;
+}
+
+.image_displayer img { /*improvizatie pana vom avea un continut real*/
+    max-width: 49%;
+}
+
+.image_displayer img:nth-of-type(2) { /*improvizatie pana vom avea un continut real*/
+    transform: scaleX(-1);
+}
