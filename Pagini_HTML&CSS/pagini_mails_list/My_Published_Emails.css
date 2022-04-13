@@ -23,6 +23,10 @@ div {
     display: none;
 }
 
+nav {
+    display: block;
+}
+
 @media screen and (max-width: 621px) {
     div {
         display: initial;
@@ -55,7 +59,6 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    opacity: 95%;
 }
 
 @media screen and (max-width: 1432px) and (min-width: 330px) {
