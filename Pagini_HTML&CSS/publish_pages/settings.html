@@ -8,7 +8,7 @@
     </head>
     
     <body>
-        <p class="paragraph">Please set up a few things before you go:</p>
+        <p>Please set up a few things before you go:</p>
 
         <form method="get">
             <label id="privacy">Privacy:</label><br>
@@ -38,7 +38,11 @@
             </div>
         </form>
 
-        <button type="submit" id="publish" onclick="window.location.href='share.html'">Publish</button><br>
-        <button type="submit" id="quit" onclick="window.location.href='page2.html'">Quit</button>
+        <div class="button">
+            <button type="submit" id="publish" onclick="window.location.href='share.html'">Publish</button><br>
+        </div>
+        <div class="button quit">
+            <button type="submit" id="quit" onclick="window.location.href='page2.html'">Quit</button>
+        </div>
     </body>
 </html>
