@@ -21,4 +21,16 @@ window.addEventListener('resize',function(event) {
      document.getElementById("menu").style.display = "none";
 },false);
 
+document.getElementById("publish_trigger").addEventListener('mouseenter',function(event) {
+  var x  = event.pageX;
+  var y  = event.pageY;
+  document.getElementById("explanation").style.visibility = "visible";
+  document.getElementById("explanation").style.top = `${y}px`;
+  document.getElementById("explanation").style.left = `${x}px`;
+},false)
+
+document.getElementById("publish_trigger").addEventListener('mouseout',function(event) {
+  document.getElementById("explanation").style.visibility = "hidden";
+},false)
+
 

@@ -169,3 +169,18 @@ article {
 .image_displayer img:nth-of-type(2) { /*improvizatie pana vom avea un continut real*/
     transform: scaleX(-1);
 }
+
+.explanation {
+    background-color: rgb(229, 223, 239);    
+    box-sizing: border-box;
+    width: fit-content;
+    padding: 0.1% 1% 0.1%;
+    box-shadow: inset 3px 3px 3px #534a63, inset -3px -3px 3px #534a63;
+    opacity: 90%;
+    position: absolute;
+    visibility: hidden;
+}
+
+.explanation p {
+    margin: 0;
+}
