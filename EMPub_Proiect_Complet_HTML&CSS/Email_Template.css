@@ -49,13 +49,13 @@ main {
     }
 }
 
-@media screen and (max-width: 850px) and (min-width: 574px) {
+@media screen and (max-width: 850px) and (min-width: 580px) {
     header {
         grid-column: 3 / 9;
     }
 }
 
-@media screen and (max-width: 575px) and (min-width: 435px) {
+@media screen and (max-width: 581px) and (min-width: 435px) {
     header {
         grid-column: 3 / 9;
     }
@@ -141,7 +141,7 @@ article {
     box-shadow: 2px 2px 5px #16082f, inset 3px 3px 3px #534a63;
 }
 
-@media screen and (max-width: 220px) and (min-width: 174px) {
+@media screen and (max-width: 220px) and (min-width: 144px) {
     article {
         font-size: 2px;
     }
@@ -151,7 +151,7 @@ article {
     }
 }
 
-@media screen and (max-width: 175px) {
+@media screen and (max-width: 145px) {
     article {
         font-size: 2px;
     }

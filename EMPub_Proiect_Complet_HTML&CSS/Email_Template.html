@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   </head>
   <body>
-    <figure tabindex="0" id="smallerMenu" class="smallerMenu"><img class = "dropdown_logo" src = "./assets/logo_for_menu_gray.svg" alt="logo at phone menu size"/></figure>
+    <div tabindex="0" id="smallerMenu" class="smallerMenu"><img class = "dropdown_logo" src = "./assets/logo_for_menu_gray.svg" alt="logo at phone menu size"/></div>
     <nav id="menu">
       <ul class = "left_side_menu">
         <li id="menu_closer"><img class = "logo" src = "./assets/logo_for_menu.svg" alt="logo at original size"/></li>
@@ -74,7 +74,7 @@
     <p>
       Please select the type of time interval you want to display charts for:
     </p>
-    <a id="diagram_views_menu"><div class="diagram_menu">
+    <a id="diagram_views_menu"></a><div class="diagram_menu">
       <select class="stats_options">
         <option>Hourly</option>
         <option>Daily</option>
@@ -87,11 +87,11 @@
         <li><button>HTML Download</button></li>
         <li><button>XML Download</button></li>
       </ul>
-    </div></a>
+    </div>
     <!--  view log format: date - IP - id_post   -->
     <canvas id="viewsovertime">     
     </canvas>
-    <a id="diagram_countries_menu"><div class="diagram_menu">
+    <a id="diagram_countries_menu"></a><div class="diagram_menu">
         <select class="stats_options">
           <option>Hourly</option>
           <option>Daily</option>
@@ -104,7 +104,7 @@
           <li><button>HTML Download</button></li>
           <li><button>XML Download</button></li>
         </ul>
-    </div></a>
+    </div>
     <canvas id="viewsbycountry">
     </canvas>
     </main>
