@@ -44,7 +44,8 @@
             padding-left: 3%;
         }
 
-        body img[alt="Application logo"], img[alt="Delete"] {
+        body img[alt="Application logo"], img[alt="Delete"], img[alt="Publish"], img[alt="See statistics"] {
+            margin-right: 0.2em;
             margin-left: 0.2em;
             margin-bottom: -0.1em;
             display: inline-block;
@@ -75,7 +76,7 @@
             2.2 Funcțiile produsului
         </h3>
         <div> <!--DO NOT UNFOLD-->
-            <img style="background-color: white;"alt="diagram" src="./diagram1.png" title="flow diagram"></img>
+            <img alt="diagram" src="diagram1.png" title="flow diagram">
         </div>
         <p>
             Aplicația îi permite oricărui utilizator să se autentifice și să creeze, în propriul nume, postări de tip blog prin trimiterea unui mail cu titlul și conținutul postării către o adresă de email controlată de bot-ul de email antemenționat, sau direct prin intermediul unui formular accesibil pe site-ul web.
@@ -109,7 +110,7 @@
             2.4 Mediu de operare
         </h3>
         <div> <!--DO NOT UNFOLD-->
-            <img alt="diagram" src="./diagram2.png">
+            <img alt="diagram" src="diagram2.png">
         </div>
         <p>
             Aplicația web va rula în sistemul de operare Raspbian, bazat pe Debian Linux<a href="#ref-raspbian"><sup>[1]</sup></a>, pe un dispozitiv de tip Raspberry Pi. Componentele vor folosi PHP pentru serverul web, MariaDB pentru baza de date, și Java Runtime Environment pentru bot-ul care gestionează email-urile primite. Pentru a asigura un mediu steril, poate fi decisă de către echipa de dezvoltare la un moment ulterior folosirea containerelor Docker pentru a opera individual componentele aplicației.
@@ -124,12 +125,6 @@
         </p>
         <p>
             Aplicația va trebui să fie compatibilă cu diverse tehnologii de comunicare cu alte protocoale, cum ar fi POP3 și IMAP pentru email. Ca model de mentenanță, aceasta le aparține dezvoltatorilor proiectului.
-        </p>
-        <p>
-            În privința constrângerilor de design, am optat pentru modelul MVC, unde Model este reprezentat de backend-ul aplicatiei, View este componenta de front-end, iar Controller este componenta de Javascript din front-end care comuncă cu back-end-ul. 
-        </p>
-        <p>
-            Structura aplicației constă în 3 microservicii: server-ul web, server-ul SQL și robot-ul de email. 
         </p>
     </section>
     <section>
@@ -178,9 +173,9 @@
         </p>
         <ul>
             <li>vizualizarea conținutului email-ului</li>
-            <li>publicarea email-ului prin apăsarea butonului reprezentat de pictograma <i>send/publish???</i></li>
+            <li>publicarea email-ului prin apăsarea butonului reprezentat de pictograma <img src="publish.svg" alt="Publish"></li>
             <li>ștergerea email-ului prin apăsarea butonului reprezentat de pictograma <img src="delete.svg" alt="Delete"></li>
-            <li>vizualizarea statisticilor aferente cu privire la numărul de vizualizări și la țara de origine a celor care au vizualizat email-ul, prin apăsarea butonului reprezentat de pictograma <i>statistici</i>.</li>
+            <li>vizualizarea statisticilor aferente cu privire la numărul de vizualizări și la țara de origine a celor care au vizualizat email-ul, prin apăsarea butonului reprezentat de pictograma <img src="stats_icon.svg" alt="See statistics">.</li>
         </ul>
         <p>
             Pe pagina <i>Published emails</i> se găsesc email-urile pe care utilizatorul le-a publicat și a căror durată de publocare nu a expirat la momentul accesării acestei pagini. Pentru fiecare email din această pagină există aceleași opțiuni oferite și în pagina <i>All emails</i>, opțiuni prezentate anterior.
@@ -301,7 +296,7 @@
                 <li>trimiterea email-ului pe care dorește să îl publice cu ajutorul aplicației web EMPub la adresa *to be decided* controlată de aceasta</li>
                 <li>autentificarea în aplicație cu adresa de pe care s-a trimis email-ul ce se dorește a fi publicat</li>
                 <li>accesarea paginii <i>All emails</i> unde se va regăsi email-ul trimis la adresa controlată de aplicație</li>
-                <li>apăsarea butonului <i>send/publish</i> ce va redirecționa utilizatorul către o pagină pentru setarea proprietăților email-ului ce se dorește a fi publicat</li>
+                <li>apăsarea butonului <img src="publish.svg" alt="Publish"> ce va redirecționa utilizatorul către o pagină pentru setarea proprietăților email-ului ce se dorește a fi publicat</li>
                 <li>setarea proprietăților email-ului ce se dorește a fi publicat &rarr; securitate, durata în ore, minute și secunde (doar dacă se selectează opțiunea <i>Yes</i> pentru durată) și parola (doar dacă se selectează opțiunea <i>Private</i> pentru securitate)</li>
                 <li>apăsarea butonului <i>Publish</i> ce va redirecționa utilizatorul către pagina cu link-ul furnizat pentru accesarea email-ului publicat</li>
                 <li>apăsarea butonului <i>Copy link</i> ce va copia link-ul furnizat și va redirecționa utlizatorul în pagina <i>Published emails</i>.</li>
@@ -363,7 +358,7 @@
         <section>
             <h4>4.4.2 Secvențe de stimul/răspuns</h4>
             <p>
-                Un utilizator poate vedea statisticile unui email publicat alegând unul din pagina <i>Published emails</i> și apăsând butonul reprezentat de pictograma <i>statistici</i> ce îl va redirecționa pe pagina pe care acestea se află. Acolo utilizatorul poate alege dacă dorește să vadă numărul de vizualizări pe ore, zile, luni sau ani.
+                Un utilizator poate vedea statisticile unui email publicat alegând unul din pagina <i>Published emails</i> și apăsând butonul reprezentat de pictograma <img src="stats_icon.svg" alt="See statistics"> ce îl va redirecționa pe pagina pe care acestea se află. Acolo utilizatorul poate alege dacă dorește să vadă numărul de vizualizări pe ore, zile, luni sau ani.
             </p>
         </section>
         <section>
