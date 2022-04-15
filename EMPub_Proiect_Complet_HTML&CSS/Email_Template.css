@@ -53,9 +53,13 @@ main {
     header {
         grid-column: 3 / 9;
     }
+    .letter_layout{
+        font-size: 12px;
+        flex-wrap: wrap;
+    }
 }
 
-@media screen and (max-width: 581px) and (min-width: 435px) {
+@media screen and (max-width: 581px) and (min-width: 449px) {
     header {
         grid-column: 3 / 9;
     }
@@ -65,7 +69,7 @@ main {
     }
 }
 
-@media screen and (max-width: 436px) and (min-width: 349px) {
+@media screen and (max-width: 450px) and (min-width: 349px) {
     .letter_layout{
         font-size: 6px;
         flex-wrap: wrap;
@@ -74,7 +78,7 @@ main {
 
 @media screen and (max-width: 350px) and (min-width: 219px) {
     .letter_layout{
-        font-size: 4px;
+        font-size: 3px;
         flex-wrap: wrap;
     }
 }
