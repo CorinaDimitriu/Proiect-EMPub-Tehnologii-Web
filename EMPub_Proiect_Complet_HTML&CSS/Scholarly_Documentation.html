@@ -44,7 +44,7 @@
             padding-left: 3%;
         }
 
-        body img[alt="Application logo"], img[alt="Delete"], img[alt="Publish"], img[alt="See statistics"] {
+        body img[alt="Application logo"], img[alt="Delete"], img[alt="Publish"], img[alt="See statistics"], img[alt="About"] {
             margin-right: 0.2em;
             margin-left: 0.2em;
             margin-bottom: -0.1em;
@@ -56,6 +56,23 @@
         img {
             width: 100%;
             height: auto;
+        }
+
+        body .login_pages, .publish, .stats {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 1vw;
+        }
+
+        body .mobile {
+            display: grid;
+            grid-template-columns: repeat(5,auto);
+            gap: 0.1vw;
+        }
+
+        body .mobile img {
+            height: 16vw;
+            width: auto;
         }
     </style>
 </head>
@@ -147,9 +164,6 @@
     <section>
         <h3>3.1 Interfețe de utilizator</h3>
         <p>
-            (TODO aici vin capturi de ecran cu design-ul final ales, si o descriere a flow-ului utilizatorului, daca folosesti un design anume etc.)  
-        </p>
-        <p>
             Pentru a avea acces la funcționalitățile puse la dispoziție de aplicația web EMPub este necasară autentificarea ce constă în 3 pași simpli:
         </p>
         <ol>
@@ -158,41 +172,100 @@
             <li>alegerea țării de reședință din lista oferită pe a treia pagină și apăsarea butonului <i>Continue</i>.</li>
         </ol>
         <p>
-            După autentificare, utilizatorul este redirecționat pe pagina <i>All emails</i>. 
+            Atunci când utilizatorul se află cu mouse-ul pe steluța din mijlocul logo-ului, aceasta se va mări și va apărea în ea numele aplicației web.
+        </p>
+        <p>
+            De asemenea, pe prima pagină se află butonul reprezentat de pictograma <img src="./assets/about.svg" alt="About"> ce redirecționează utilizatorul pe pagina cu documentația aferentă aplicației EMPub.
+        </p>
+        <div class="login_pages">
+            <img src="./screen_images/login_home.png" alt="Login page">
+            <img src="./screen_images/login_home_star.png" alt="Login page with star animation">
+            <img src="./screen_images/login_code.png" alt="Login page with verification code">
+            <img src="./screen_images/login_country.png" alt="Login page with country selector">
+        </div>
+        <p>
+            După autentificare, utilizatorul este redirecționat pe pagina <i>Publish queue</i>. 
         </p>
         <p>
             Aplicația EMPub pune la dispoziție trei pagini principale:
         </p>
         <ol>
-            <li>All emails</li>
+            <li>Publish queue</li>
             <li>Published emails</li>
             <li>Archived emails.</li>
         </ol>
         <p>
-            Pe pagina <i>All emails</i> se găsesc email-urile pe care utilizatorul le-a trimis la adresa controlată de aplicația web. Pentru fiecare email din această pagină există 3 opțiuni:
+            Pe pagina <i>Publish queue</i> se găsesc email-urile pe care utilizatorul le-a trimis la adresa controlată de aplicația web. Pentru fiecare email din această pagină există 3 opțiuni:
         </p>
         <ul>
             <li>vizualizarea conținutului email-ului</li>
             <li>publicarea email-ului prin apăsarea butonului reprezentat de pictograma <img src="./assets/publish.svg" alt="Publish"></li>
             <li>ștergerea email-ului prin apăsarea butonului reprezentat de pictograma <img src="./assets/delete.svg" alt="Delete"></li>
-            <li>vizualizarea statisticilor aferente cu privire la numărul de vizualizări și la țara de origine a celor care au vizualizat email-ul, prin apăsarea butonului reprezentat de pictograma <img src="./assets/stats_icon.svg" alt="See statistics">.</li>
+            
         </ul>
+        <img src="./screen_images/publish_queue.png" alt="Publish queue page">
         <p>
-            Pe pagina <i>Published emails</i> se găsesc email-urile pe care utilizatorul le-a publicat și a căror durată de publocare nu a expirat la momentul accesării acestei pagini. Pentru fiecare email din această pagină există aceleași opțiuni oferite și în pagina <i>All emails</i>, opțiuni prezentate anterior.
+            Pe pagina <i>Published emails</i> se găsesc email-urile pe care utilizatorul le-a publicat și a căror durată de publicare nu a expirat la momentul accesării acestei pagini. Pentru fiecare email din această pagină există 3 opțiuni:
         </p>
+        <ul>
+            <li>vizualizarea conținutului email-ului</li>
+            <li>vizualizarea statisticilor aferente cu privire la numărul de vizualizări și la țara de origine a celor care au vizualizat email-ul, prin apăsarea butonului reprezentat de pictograma <img src="./assets/stats_icon.svg" alt="See statistics">.</li>
+            <li>ștergerea email-ului prin apăsarea butonului reprezentat de pictograma <img src="./assets/delete.svg" alt="Delete"></li>
+        </ul>
+        <img src="./screen_images/published_emails.png" alt="Published emails page">
         <p>
-            Pe pagina <i>Archived emails</i> se găsesc email-urile publicate de alți utilizatori la care utilizatorul în cauză are acces. Pentru fiecare email din această pagină există opțiunea de vizualizare a conținutului email-ului și de eliminare din pagina respectivă.
+            Pe pagina <i>Archived emails</i> se găsesc email-urile publicate de alți utilizatori la care utilizatorul în cauză are acces. Pentru fiecare email din această pagină există 2 opțiuni:
         </p>
+        <ul>
+            <li>vizualizarea conținutului email-ului</li>
+            <li>ștergerea email-ului prin apăsarea butonului reprezentat de pictograma <img src="./assets/delete.svg" alt="Delete"></li>
+        </ul>
+        <img src="./screen_images/archived_emails.png" alt="Archived emails page">
         <p>
             Utilizatorii au acces la meniul din stânga pe tot parcursul folosirii aplicației, meniu ce oferă o serie de butoane cu anumite funcționalități:
         </p>
         <ul>
-            <li>butonul <i>All emails</i> &rarr; redirecționează utilizatorul pe pagina <i>All emails</i></li>
+            <li>butonul <i>Publish queue</i> &rarr; redirecționează utilizatorul pe pagina <i>Publish queue</i></li>
             <li>butonul <i>Published emails</i> &rarr; redirecționează utilizatorul pe pagina <i>Published emails</i></li>
             <li>butonul <i>Archived emails</i> &rarr; redirecționează utilizatorul pe pagina <i>Archived emails</i></li>
             <li>butonul <i>About</i> &rarr; redirecționează utilizatorul pe pagina cu documentația aplicației</li>
-            <li>butonul <i>Logout</i> &rarr; deconectează utilizatorul din aplicația web.</li>
+            <li>butonul <i>Logout</i> &rarr; deconectează utilizatorul din aplicația web și îl redirecționează în pagina de autentificare.</li>
         </ul>
+        <p>
+            Dacă utilizatorul dorește să vizualizeze conținutul unui email, el trebuie să apese pe email-ul corespunzător și va fi redirecționat către pagina ce îl conține. Dacă email-ul îi aparține, va fi posibil să vizualizeze și statisticile aferente publicării acestuia.
+        </p>
+        <img src="./screen_images/email.png" alt="Content of email">
+        <p>
+            Dacă utilizatorul dorește să vizualizeze statisticile unui email, o poate face atât din pagina <i>Published emails</i>, cât și din pagina în care este afișat conținutul email-ului, apăsând butonul reprezentat de pictograma <img src="./assets/stats_icon.svg" alt="See statistics"> ce îl va redirecționa către pagina asociată conținutului email-ului, în partea de dupa acesta.
+        </p>
+        <p>
+            Utlizatorul poate vedea statisticile vizând numărul de vizualizări sau țara de origine a vizitatorilor.
+        </p>
+        <div class="stats">
+            <img src="./screen_images/view_statistics.png" alt="Click on view statistics">
+            <img src="./screen_images/statistics_beginning.png" alt="Choices for statistics">
+            <img src="./screen_images/statistics1.png" alt="Statistics by number of views">
+            <img src="./screen_images/statistics2.png" alt="Statistics by country">
+        </div>
+        <p>
+            Dacă utilizatorul dorește să publice un email și apasă butonul reprezentat de pictograma <img src="./assets/publish.svg" alt="Publish">, el va fi redirecționat către o pagină unde va trebui să seteze proprietățile pentru această acțiune. Setările implicite sunt postare publică și fără durată de expirare, însă odată ce utilizatorul bifează opțiunile <i>Yes</i>, pentru oricare dintre cele 2 proprietăți vor apărea câmpuri aparte în care va putea introduce propriile valori. Butonul <i>Publish</i> îl va redirecționa pe utilizator pe pagina în care poate copia link-ul aferent publicării email-ului.
+        </p>
+        <div class="publish">
+            <img src="./screen_images/publish_email.png" alt="Click on publish icon">
+            <img src="./screen_images/publish_settings1.png" alt="Default settings for publishing an email">
+            <img src="./screen_images/publish_settings2.png" alt="Personal settings for publishing an email">
+            <img src="./screen_images/copy_link.png" alt="Copy link of published email">
+        </div>
+        <p>
+            Aplicația web EMPub este compatibilă cu o serie de dispozitive (telefon mobil, tabletă, laptop) la diferite rezoluții, dar și cu diferite browsere(Chrome, Opera, Microsoft Edge etc.).
+        </p>
+        <div class="mobile">
+            <img src="./screen_images/publish_queue_mobile.png" alt="Publish queue page from mobile device">
+            <img src="./screen_images/menu_mobile.png" alt="Menu from mobile device">
+            <img src="./screen_images/email_mobile.png" alt="Content of an email from a mobile device">
+            <img src="./screen_images/publish_mobile.png" alt="Publish email from a mobile device">
+            <img src="./screen_images/tablet.jpg" alt="Tablet">
+        </div>
     </section>
     <section>
         <h3>3.2 Interfețe hardware</h3>
@@ -254,7 +327,7 @@
                 <li>introduce codul de verificare primit pe adresa de email furnizată la pasul anterior</li>
                 <li>apasă butonul <i>Continue</i> ce îl va redirecționa pe pagina care cere selectarea țării de origine/reședință</li>
                 <li>selectează țara de origine/reședință din lista oferită</li>
-                <li>apasă buonul <i>Continue</i> ce îl va redirecționa pe pagina <i>All emails</i></li>
+                <li>apasă buonul <i>Continue</i> ce îl va redirecționa pe pagina <i>Publish queue</i></li>
             </ol>
             <p>
                 O metodă alternativă luată în considerare pentru obținerea țării de origine a utilizatorului este deducerea acesteia din adresa IP, folosind un API extern.
@@ -295,17 +368,17 @@
             <ol>
                 <li>trimiterea email-ului pe care dorește să îl publice cu ajutorul aplicației web EMPub la adresa *to be decided* controlată de aceasta</li>
                 <li>autentificarea în aplicație cu adresa de pe care s-a trimis email-ul ce se dorește a fi publicat</li>
-                <li>accesarea paginii <i>All emails</i> unde se va regăsi email-ul trimis la adresa controlată de aplicație</li>
+                <li>accesarea paginii <i>Publish queue</i> unde se va regăsi email-ul trimis la adresa controlată de aplicație</li>
                 <li>apăsarea butonului <img src="./assets/publish.svg" alt="Publish"> ce va redirecționa utilizatorul către o pagină pentru setarea proprietăților email-ului ce se dorește a fi publicat</li>
                 <li>setarea proprietăților email-ului ce se dorește a fi publicat &rarr; securitate, durata în ore, minute și secunde (doar dacă se selectează opțiunea <i>Yes</i> pentru durată) și parola (doar dacă se selectează opțiunea <i>Private</i> pentru securitate)</li>
                 <li>apăsarea butonului <i>Publish</i> ce va redirecționa utilizatorul către pagina cu link-ul furnizat pentru accesarea email-ului publicat</li>
                 <li>apăsarea butonului <i>Copy link</i> ce va copia link-ul furnizat și va redirecționa utlizatorul în pagina <i>Published emails</i>.</li>
             </ol>
             <p>
-                După ce utilizatorul publică un email, acesta va fi mutat în pagina <i>Published emails</i>, iar după ce durata de publicare expiră va fi mutat înapoi în pagina <i>All emails</i>. În acest fel un același email nu poate fi publicat mai mult de o dată.
+                După ce utilizatorul publică un email, acesta va fi mutat în pagina <i>Published emails</i>, iar după ce durata de publicare expiră va fi mutat înapoi în pagina <i>Publish queue</i>. În acest fel un același email nu poate fi publicat mai mult de o dată.
             </p>
             <p>
-                În cazul în care un utilizator se răzgândește și nu mai dorește să publice email-ul selectat, în pagina în care se setează proprietățile pentru publicarea acestuia există butonul <i>Quit</i> care va anula acțiunea și va redirecționa utilizatorul în pagina <i>All emails</i>.
+                În cazul în care un utilizator se răzgândește și nu mai dorește să publice email-ul selectat, în pagina în care se setează proprietățile pentru publicarea acestuia există butonul <i>Quit</i> care va anula acțiunea și va redirecționa utilizatorul în pagina <i>Publish queue</i>.
             </p>
         </section>
         <section>
@@ -314,7 +387,7 @@
                 Pentru ca un utilizator să poată publica un email, el trebuie să fie autentificat în aplicație.
             </p>
             <p>
-                Pentru ca un utilizator să poată publica un email, email-ul respectiv va trebui să existe în pagina <i>All emails</i>, adică să fie trimis de la adresa cu care utilizatorul s-a autentificat în aplicație la adresa controlată de aplicație.
+                Pentru ca un utilizator să poată publica un email, email-ul respectiv va trebui să existe în pagina <i>Publish queue</i>, adică să fie trimis de la adresa cu care utilizatorul s-a autentificat în aplicație la adresa controlată de aplicație.
             </p>
             <p>
                 Pentru ca un email să fie publicat cu succes, este nevoie ca o durată să fie precizată în cazul în care se dorește ca email-ul publicat să expire după un anumit timp și ca o parolă să fie furnizată în cazul în care se dorește ca email-ul publicat să fie privat. Fără aceste informații, utilizatorul va primi mesaje de notificare intuitive cu privire la lipsa duratei și/sau parolei atunci când apasă butonul <i>Publish</i>.
@@ -371,7 +444,7 @@
         <section>
             <h4>4.5.1 Descriere și prioritate</h4>
             <p>
-                Un utilizator poate șterge email-uri din oricare listă din paginile <i>All emails</i>, <i>Published emails</i> și <i>Archived emails</i>.
+                Un utilizator poate șterge email-uri din oricare listă din paginile <i>Publish queue</i>, <i>Published emails</i> și <i>Archived emails</i>.
             </p>
             <p>
                 Acestă caracteristică a sistemului are proprietate scăzută.
@@ -386,7 +459,7 @@
         <section>
             <h4>4.5.3 Cerințe funcționale</h4>
             <p>
-                Un utilizator care șterge un email din pagina <i>All emails</i> nu va mai avea acces la el. 
+                Un utilizator care șterge un email din pagina <i>Publish queue</i> nu va mai avea acces la el. 
             </p>
             <p>
                 Un utilizator care șterge un email din pagina <i>Published emails</i> nu va mai avea acces la el și va face ca toți utilizatorii care au primit acces la email să piardă acest privilegiu.
