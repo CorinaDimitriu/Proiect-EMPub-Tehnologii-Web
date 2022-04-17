@@ -21,4 +21,3 @@ window.addEventListener('resize',function(event) {
      document.getElementById("menu").style.display = "none";
 },false);
 
-
