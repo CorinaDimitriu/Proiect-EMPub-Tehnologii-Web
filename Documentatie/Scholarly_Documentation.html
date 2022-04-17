@@ -73,7 +73,7 @@
         }
 
         img {
-            width: 100%;
+            max-width: 100%;
             height: auto;
         }
 
@@ -87,21 +87,35 @@
             text-align: center;
         }
 
-        body .login_pages, .publish, .stats {
+        body .login_pages, .publish, .stats, .explanations  {
             display: grid;
-            grid-template-columns: auto auto;
-            gap: 1vw;
+            grid-template-columns: repeat(2,1fr);
+            gap: 0.1vw;
         }
 
         body .mobile {
             display: grid;
-            grid-template-columns: repeat(5,auto);
+            grid-template-columns: repeat(4,1fr);
             gap: 0.1vw;
         }
 
-        body .mobile img {
-            height: 16.5vw;
-            width: auto;
+        @media screen and (max-width: 400px) {
+            body .mobile {
+                grid-template-columns: repeat(2,1fr);
+                grid-template-rows: repeat(2,1fr);
+            }
+        }
+
+        @media screen and (max-width: 324px) {
+            body .mobile {
+                grid-template-rows: repeat(4,1fr);
+                grid-template-columns: 1fr;
+            }
+
+            body .login_pages, .publish, .stats, .explanations  {
+                grid-template-rows: repeat(4,1fr);
+                grid-template-columns: 1fr;
+            }
         }
 
         #business_rules li, #product_functions li, body dd {
@@ -311,7 +325,7 @@
                 Dintr-o perspectivă de ansamblu, aplicația are 3 componente: o aplicație web care servește clientului informațiile relevante dintr-o bază de date, baza de date propriu-zisă, și o suită de script-uri care gestionează contul de email aferent acestei aplicații.
             </p>
             <p>
-                Aceste trei componente reprezintă cele trei părți esențiale pentru o structură MVC. Model este baza de date, View este site-ul web, iar controller sunt codul PHP, Javascript și robot-ul de mail care fac legătura între front si back-end. Totodată, aceste elemente coincid cu o arhitectură generală bazată pe microservicii, anume baza de date, site-ul web și robotul de mail.
+                Aceste trei componente reprezintă cele trei părți esențiale pentru o structură MVC. Model poate fi considerată arhitectura bazei de date, View este site-ul web, iar Controller este ansamblul format din cod PHP și Javascript și robot-ul de mail, care fac legătura între front‑end si back‑end. Totodată, aceste elemente coincid cu o arhitectură generală bazată pe microservicii, anume familia de operații asupra bazei de date, partea de server a site-ului web și familia de operații întreprinse de robotul de mail.
             </p>
             <div>
                 <figure typeof="sa:image"><img alt="diagram" src="./diagrams/diagram1.svg" title="flow diagram"><figcaption><span>2.1</span> Structura generală a aplicației</figcaption></figure>
@@ -324,7 +338,7 @@
                 La nivel global, aplicația îi permite oricărui utilizator să se autentifice și să creeze, în propriul nume, postări de tip blog cu structură de email. Pentru aceasta, se începe cu trimiterea unui email (cu titlul și conținutul postării) către o adresă de email controlată de robotul de email anterior menționat.
             </li>
             <li>
-                Email-urile trimise la adresa menționată mai sus, dar încă nepublicate, vor fi listate în secțiunea/pagina intitulată <i>Publish queue</i> (ce poate fi selectată din meniul de navigare).
+                Eamil-urile trimise la adresa menționată mai sus, dar încă nepublicate, vor fi listate în secțiunea/pagina intitulată <i>Publish queue</i> (ce poate fi selectată din meniul de navigare).
             </li>
             <li>
                 Pentru a finaliza procesul de publicare a unui email, utilizatorul se autentifică în aplicație și selectează email‑ul din secțiunea <i>Publish queue</i>.
@@ -422,16 +436,16 @@
         <section id="assumptions">
             <h3><span>2.7</span> Presupuneri și dependențe</h3>
             <p>
-                În realizarea proiectului, se simulează o apropiere cât mai fidelă de scenariul real al creării unei aplicații web pentru publicarea de email-uri, ce rezolvă problema, identificată într-o varietate de grupuri sociale, a redirecționării de email-uri către un public numeros. Prin urmare, funcționarea aplicației depinde de controlul asupra contului menționat la începutul prezentului document, <i>empub@gmail.com</i>, prin integrare cu platforma Gmail folosindu-ne de Javamail API.
+                În realizarea proiectului, se simulează o apropiere cât mai fidelă de scenariul real al creării unei aplicații web pentru publicarea de email‑uri, ce rezolvă problema, identificată într‑o varietate de grupuri sociale, a redirecționării de email‑uri către un public numeros. Prin urmare, funcționarea aplicației depinde de controlul asupra contului menționat la începutul prezentului document, <i>empub@gmail.com</i>, prin integrare cu platforma Gmail folosindu‑ne de Javamail API.
             </p> 
         </section>
     </section>
     <section id="external_interface_requirements">
         <h2><span>3.</span> Cerințe externe pentru interfață</h2>
         <section id="user_interfaces">
-            <h3><span>3.1</span> Interfețe de utilizator</h3>
+            <h3><span>3.1</span> Interfețe pentru utilizator</h3>
             <p>
-                Pentru a avea acces la funcționalitățile puse la dispoziție de aplicația web EMPub este necasară autentificarea ce constă în 3 pași simpli:
+                Pentru a avea acces la funcționalitățile puse la dispoziție de aplicația web EMPub este necasară autentificarea, care constă în 3 pași simpli:
             </p>
             <ol>
                 <li>introducerea adresei de email în câmpul localizat pe prima pagină și apăsarea butonului <i>Continue</i></li>
@@ -439,57 +453,61 @@
                 <li>alegerea țării de reședință din lista oferită pe a treia pagină și apăsarea butonului <i>Continue</i>.</li>
             </ol>
             <p>
-                Atunci când utilizatorul se află cu mouse-ul pe steluța din mijlocul logo-ului, aceasta se va mări și va apărea în ea numele aplicației web.
+                Atunci când utilizatorul se află cu mouse‑ul pe steaua din mijlocul logo‑ului, aceasta se va mări și va apărea în interiorul ei numele aplicației web.
             </p>
             <p>
                 De asemenea, pe prima pagină se află butonul reprezentat de pictograma <img src="./assets/about.svg" alt="About"> ce redirecționează utilizatorul pe pagina cu documentația aferentă aplicației EMPub.
             </p>
             <div class="login_pages">
-                <img src="./screen_images/login_home.png" alt="Login page">
-                <img src="./screen_images/login_home_star.png" alt="Login page with star animation">
-                <img src="./screen_images/login_code.png" alt="Login page with verification code">
-                <img src="./screen_images/login_country.png" alt="Login page with country selector">
+                <figure><img src="./screen_images/login_home.png" alt="Login page"><figcaption><span>3.1 </span>Exemplificarea autentificării ‑ 1</figcaption></figure>
+                <figure><img src="./screen_images/login_home_star.png" alt="Login page with star animation"><figcaption><span>3.2 </span>Exemplificarea autentificării ‑ 2</figcaption></figure>
+                <figure><img src="./screen_images/login_code.png" alt="Login page with verification code"><figcaption><span>3.3 </span>Exemplificarea autentificării ‑ 3</figcaption></figure>
+                <figure><img src="./screen_images/login_country.png" alt="Login page with country selector"><figcaption><span>3.4 </span>Exemplificarea autentificării ‑ 4</figcaption></figure>
             </div>
             <p>
-                După autentificare, utilizatorul este redirecționat pe pagina <i>Publish queue</i>. 
+                După autentificare, utilizatorul este redirecționat către pagina <i>Publish queue</i>. 
             </p>
             <p>
-                Aplicația EMPub pune la dispoziție trei pagini principale:
+                Aplicația EMPub pune la dispoziție trei pagini principale de listare a email‑urilor colecționate de utilizator:
             </p>
             <ol>
-                <li>Publish queue</li>
-                <li>Published emails</li>
+                <li><i>Publish queue</i></li>
+                <li><i>Published emails</i></li>
                 <li>Archived emails.</li>
             </ol>
             <p>
-                Pe pagina <i>Publish queue</i> se găsesc email-urile pe care utilizatorul le-a trimis la adresa controlată de aplicația web. Pentru fiecare email din această pagină există 3 opțiuni:
+                Pe pagina <i>Publish queue</i> se găsesc email‑urile pe care utilizatorul le-a trimis la adresa controlată de aplicația web. Pentru fiecare email din această pagină există 3 opțiuni:
             </p>
             <ul>
                 <li>vizualizarea conținutului email-ului</li>
                 <li>publicarea email-ului prin apăsarea butonului reprezentat de pictograma <img src="./assets/publish.svg" alt="Publish"></li>
-                <li>ștergerea email-ului prin apăsarea butonului reprezentat de pictograma <img src="./assets/delete.svg" alt="Delete"></li>
-                
+                <li>ștergerea email-ului prin apăsarea butonului reprezentat de pictograma <img src="./assets/delete.svg" alt="Delete"></li>              
             </ul>
-            <img src="./screen_images/publish_queue.png" alt="Publish queue page">
             <p>
-                Pe pagina <i>Published emails</i> se găsesc email-urile pe care utilizatorul le-a publicat și a căror durată de publicare nu a expirat la momentul accesării acestei pagini. Pentru fiecare email din această pagină există 3 opțiuni:
+                Motivul pentru care unele acțiuni (precum publicarea sau vizualizarea de statistici) sunt disponibile încă din pagina de listare a colecțiilor de email-uri este proiectarea unui traseu eficient (ca număr de click‑uri) de acțiuni ale utilizatorului pentru cât mai multe scenarii de utilizare.
+            </p>
+            <figure><img src="./screen_images/publish_queue.png" alt="Publish queue page"><figcaption><span>3.5 </span> Coada de publicare</figcaption></figure>
+            <p>
+                Pe pagina <i>Published emails</i> se găsesc email‑urile pe care utilizatorul le‑a publicat și a căror durată de publicare nu a expirat la momentul accesării acestei pagini. Pentru fiecare email din această pagină există 3 opțiuni:
             </p>
             <ul>
                 <li>vizualizarea conținutului email-ului</li>
-                <li>vizualizarea statisticilor aferente cu privire la numărul de vizualizări și la țara de origine a celor care au vizualizat email-ul, prin apăsarea butonului reprezentat de pictograma <img src="./assets/stats_icon.svg" alt="See statistics">.</li>
+                <li>vizualizarea statisticilor aferente cu privire la numărul de vizualizări, data ultimei vizualizări, și la țara de origine a celor care au vizualizat email‑ul, prin apăsarea butonului reprezentat de pictograma <img src="./assets/stats_icon.svg" alt="See statistics">.</li>
                 <li>ștergerea email-ului prin apăsarea butonului reprezentat de pictograma <img src="./assets/delete.svg" alt="Delete"></li>
             </ul>
-            <img src="./screen_images/published_emails.png" alt="Published emails page">
+            <figure><img src="./screen_images/published_emails.png" alt="Published emails page"><figcaption><span>3.6 </span>Email‑uri publicate</figcaption></figure>
             <p>
-                Pe pagina <i>Archived emails</i> se găsesc email-urile publicate de alți utilizatori la care utilizatorul în cauză are acces. Pentru fiecare email din această pagină există 2 opțiuni:
+                Pe pagina <i>Archived emails</i> se găsesc email‑urile publicate de alți utilizatori la care utilizatorul în cauză are acces. Pentru fiecare email din această pagină există 2 opțiuni:
+                Se poate observa că numărul de email‑uri listate pe paginile de acest tip (<i>Publish queue</i>, <i>Published emails</i>, <i>Archived emails</i>) variază în funcție de rezoluția/lățimea și înălțimea, măsurate în pixeli, pentru dispozitivul de pe care sunt vizualizate.
+                Astfel, acesta variază între 1 și 3 email‑uri pe fiecare dintre cele 2 dimensiuni, luând în considerare distribuirea spațiului în manieră estetică (dar și eficientă) pentru utilizator, astfel încât dimensiunea fontului să rămână și ea la o mărime potrivită și agreată de ochiul uman.
             </p>
             <ul>
                 <li>vizualizarea conținutului email-ului</li>
-                <li>ștergerea email-ului prin apăsarea butonului reprezentat de pictograma <img src="./assets/delete.svg" alt="Delete"></li>
+                <li>ștergerea email‑ului prin apăsarea butonului reprezentat de pictograma <img src="./assets/delete.svg" alt="Delete"></li>
             </ul>
-            <img src="./screen_images/archived_emails.png" alt="Archived emails page">
+            <figure><img src="./screen_images/archived_emails.png" alt="Archived emails page"><figcaption><span>3.7 </span>Email‑uri arhivate</figcaption></figure>
             <p>
-                Utilizatorii au acces la meniul din stânga pe tot parcursul folosirii aplicației, meniu ce oferă o serie de butoane cu anumite funcționalități:
+                Utilizatorii au acces la meniul din stânga pe tot parcursul folosirii aplicației (după finalizarea cu succes a autentificării), meniu ce oferă o serie de butoane cu anumite funcționalități:
             </p>
             <ul>
                 <li>butonul <i>Publish queue</i> &rarr; redirecționează utilizatorul pe pagina <i>Publish queue</i></li>
@@ -499,41 +517,61 @@
                 <li>butonul <i>Logout</i> &rarr; deconectează utilizatorul din aplicația web și îl redirecționează în pagina de autentificare.</li>
             </ul>
             <p>
-                Dacă utilizatorul dorește să vizualizeze conținutul unui email, el trebuie să apese pe email-ul corespunzător și va fi redirecționat către pagina ce îl conține. Dacă email-ul îi aparține, va fi posibil să vizualizeze și statisticile aferente publicării acestuia.
-            </p>
-            <img src="./screen_images/email.png" alt="Content of email">
-            <p>
-                Dacă utilizatorul dorește să vizualizeze statisticile unui email, o poate face atât din pagina <i>Published emails</i>, cât și din pagina în care este afișat conținutul email-ului, apăsând butonul reprezentat de pictograma <img src="./assets/stats_icon.svg" alt="See statistics"> ce îl va redirecționa către pagina asociată conținutului email-ului, în partea de după acesta.
+                Pe telefon (sau pe unele tablete), meniul se extinde prin click pe pictograma, sub formă de mesaj, aflată în colțul din stânga sus al aplicației (și se închide în același mod).
             </p>
             <p>
-                Utlizatorul poate vedea statisticile vizând numărul de vizualizări sau țara de origine a vizitatorilor.
+                Dacă utilizatorul dorește să vizualizeze conținutul unui email, el trebuie să apese pe email‑ul corespunzător și va fi redirecționat către pagina ce îl conține. Dacă email‑ul îi aparține, va fi posibil să vizualizeze și statisticile aferente publicării acestuia.
+                Motivația este, în mod evident, distribuirea în mod eficient a spațiului/pixelilor, cu accent pe conținutul propriu‑zis al paginilor.
+            </p>
+            <figure><img src="./screen_images/email.png" alt="Content of email"><figcaption><span>3.8 </span>Email‑uri arhivate</figcaption></figure>
+            <p>
+                Limitarea numărului de cuvinte din titlul email‑ului ‑ atât pe paginile de listare de email‑uri, cât și pe paginile de afișare a conținutului unui email, a lungimii primei propoziții existente în email (sau lipsa unei astfel de introduceri în cazul în care email‑ul nu cuprinde conținut textual) ‑ pe paginile de listare de email‑uri, precum și restrângerea numărului de caractere din adresa de email a emițătorului ‑ pe paginile de afișare a conținutului, se vor realiza prin programare în zona back‑end, la momentul recepționării informațiilor aferente.
+                Caracterele în exces vor fi suplinite de puncte de suspensie, întrucât se consideră ca spațiul pus la dispoziție (în manieră Web responsive) este suficient de încăpător pentru a acoperi esența fiecăreia dintre entitățile menționate mai sus.
+            </p>
+            <p>
+                Dacă utilizatorul dorește să vizualizeze statisticile unui email, o poate face atât din pagina <i>Published emails</i>, cât și din pagina în care este afișat conținutul email‑ului ce este sau a mai fost publicat (deci și în cazul în care email‑ul provine de pe pagina <i>Publish Queue</i>), apăsând butonul reprezentat de pictograma <img src="./assets/stats_icon.svg" alt="See statistics"> ce îl va redirecționa către pagina asociată conținutului email‑ului, la secțiunea de după acesta.
+            </p>
+            <p>
+                Utlizatorul poate vedea statistici cu privire la numărul de vizualizări sau țara de origine a vizitatorilor, precum și data/intervalul ultimei publicări a email‑ului și data ultimei vizualizări efectuate asupra acestuia de către un alt utilizator.
+                Motivul pentru care butonul de vizualizare a statisticilor apare direct în pagina <i>Published emails</i>, dar nu și în pagina <i>Publish queue</i>, este că nu toate email-urile nepublicate au asociate statistici, întrucât nu toate au mai fost publicate în prealabil; ținând cont de acest aspect, s-a dorit uniformitatea design-ului (și simplificarea implementării ulterioare întrucât nu este nevoie să se decidă pentru fiecare email nepublicat dacă este sau nu necesar un buton de afișare a statisticilor).
             </p>
             <div class="stats">
-                <img src="./screen_images/view_statistics.png" alt="Click on view statistics">
-                <img src="./screen_images/statistics_beginning.png" alt="Choices for statistics">
-                <img src="./screen_images/statistics1.png" alt="Statistics by number of views">
-                <img src="./screen_images/statistics2.png" alt="Statistics by country">
+                <figure><img src="./screen_images/view_statistics.png" alt="Click on view statistics"><figcaption><span>3.9 </span>Vizualizarea statisticilor ‑ 1</figcaption></figure>
+                <figure><img src="./screen_images/statistics_beginning.png" alt="Choices for statistics"><figcaption><span>3.10 </span>Vizualizarea statisticilor ‑ 2</figcaption></figure>
+                <figure><img src="./screen_images/statistics1.png" alt="Statistics by number of views"><figcaption><span>3.11 </span>Vizualizarea statisticilor ‑ 3</figcaption></figure>
+                <figure><img src="./screen_images/statistics2.png" alt="Statistics by country"><figcaption><span>3.12 </span>Vizualizarea statisticilor ‑ 4</figcaption></figure>
             </div>
             <p>
-                Dacă utilizatorul dorește să publice un email și apasă butonul reprezentat de pictograma <img src="./assets/publish.svg" alt="Publish">, el va fi redirecționat către o pagină unde va trebui să seteze proprietățile pentru această acțiune. Setările implicite sunt postare publică și fără durată de expirare, însă odată ce utilizatorul bifează opțiunile <i>Yes</i>, pentru oricare dintre cele 2 proprietăți vor apărea câmpuri aparte în care va putea introduce propriile valori. Butonul <i>Publish</i> îl va redirecționa pe utilizator pe pagina în care poate copia link-ul aferent publicării email-ului.
+                Dacă utilizatorul dorește să publice un email și apasă butonul reprezentat de pictograma <img src="./assets/publish.svg" alt="Publish">, el va fi redirecționat către o pagină unde va trebui să seteze proprietățile pentru această acțiune. Setările implicite sunt postare publică și fără durată de expirare, însă odată ce utilizatorul bifează opțiunile <i>Yes</i>, pentru oricare dintre cele 2 proprietăți vor apărea câmpuri aparte în care va putea introduce propriile valori. Butonul <i>Publish</i> îl va redirecționa pe utilizator pe pagina în care poate copia link‑ul aferent publicării email‑ului.
+                Motivul utilizării de "radio buttons" pentru selecția primei opțiuni de confidențialitate și, respectiv, de setare a duratei de publicare, este gama foarte restrânsă de opțiuni, curpinzând doar 2 variante de răspuns (<i>Public/Private</i> și <i>Yes/No</i>).
+                Motivul utilizării de casete‑text puse la dispoziția utilizatorului, ulterior primei selecții (în cazul în care opțiunile anterioare au fost <i>Private</i> și, respectiv, <i>Yes</i>), spre completare în întregime este, în mod intuitiv, de a-i oferi libertatea să aleagă dintr-o gamă mult mai largă de posibilități. Se ia în calcul și posibilitatea adăugării, pe lângă ore, minute și secunde, posibilitatea de a selecta un număr de zile și un număr de săptămâni, luni sau ani.
+                De asemenea, se ia în considerare și varianta atașării unui meniu de selecție dropdown pentru numărul de minute/secunde (și pentru orice este adăugat după prima unitate de măsură a timpului considerată).
             </p>
             <div class="publish">
-                <img src="./screen_images/publish_email.png" alt="Click on publish icon">
-                <img src="./screen_images/publish_settings1.png" alt="Default settings for publishing an email">
-                <img src="./screen_images/publish_settings2.png" alt="Personal settings for publishing an email">
-                <img src="./screen_images/copy_link.png" alt="Copy link of published email">
+                <figure><img src="./screen_images/publish_email.png" alt="Click on publish icon"><figcaption><span>3.13 </span>Publicarea unui email ‑ 1</figcaption></figure>
+                <figure><img src="./screen_images/publish_settings1.png" alt="Default settings for publishing an email"><figcaption><span>3.14 </span>Publicarea unui email ‑ 2</figcaption></figure>
+                <figure><img src="./screen_images/publish_settings2.png" alt="Personal settings for publishing an email"><figcaption><span>3.15 </span>Publicarea unui email ‑ 3</figcaption></figure>
+                <figure><img src="./screen_images/copy_link.png" alt="Copy link of published email"><figcaption><span>3.16 </span>Publicarea unui email ‑ 4</figcaption></figure>
+            </div>
+            <div class="mobile">
+                <figure><img src="./screen_images/publish_queue_mobile.png" alt="Publish queue page from mobile device"><figcaption><span>3.17 </span>Coada de publicare pe telefonul mobil</figcaption></figure>
+                <figure><img src="./screen_images/menu_mobile.png" alt="Menu from mobile device"><figcaption><span>3.18 </span>Meniul pe telefonul mobil</figcaption></figure>
+                <figure><img src="./screen_images/email_mobile.png" alt="Content of an email from a mobile device"><figcaption><span>3.19 </span>Conținutul unui email pe telefonul mobil</figcaption></figure>
+                <figure><img src="./screen_images/publish_mobile.png" alt="Publish email from a mobile device"><figcaption><span>3.20 </span>Publicarea unui email de pe telefonul mobil</figcaption></figure>
+            </div>
+            <div>
+                <figure><img src="./screen_images/tablet.jpg" alt="Content of an email from a tablet"><figcaption><span>3.21 </span>Conținutul unui email pe tabletă</figcaption></figure>
             </div>
             <p>
-                Aplicația web EMPub este compatibilă cu o serie de dispozitive (telefon mobil, tabletă, laptop) la diferite rezoluții, dar și cu diferite browsere(Chrome, Opera, Microsoft Edge etc.).
+                În special pentru interfața pentru desktop și laptop, a fost adăugată facilitatea apariției de explicații suplimentare asociate simbolurilor reprezentând butoane, care sunt afișate la trecerea cu mouse-ul peste acestea din urmă, așa cum se poate remarca în imaginile de mai jos:
             </p>
-            <div class="mobile">
-                <img src="./screen_images/publish_queue_mobile.png" alt="Publish queue page from mobile device">
-                <img src="./screen_images/menu_mobile.png" alt="Menu from mobile device">
-                <img src="./screen_images/email_mobile.png" alt="Content of an email from a mobile device">
-                <img src="./screen_images/publish_mobile.png" alt="Publish email from a mobile device">
-                <img src="./screen_images/tablet.jpg" alt="Tablet">
+            <div class="explanations">
+                <figure><img src="./screen_images/publish_explanation.png" alt="Explanation associated with publish symbol"><figcaption><span>3.22 </span>Explicație asociată simbolului de publicare</figcaption></figure>
+                <figure><img src="./screen_images/stats_view_explanation1.png" alt="Explanation associated with statistics symbol - content of email page"><figcaption><span>3.23 </span>Explicație asociată simbolului de vizualizare a statisticilor în cadrul paginilor de listare a email‑urilor</figcaption></figure>
+                <figure><img src="./screen_images/delete_explanation.png" alt="Explanation associated with delete symbol"><figcaption><span>3.24 </span>Explicație asociată simbolului de ștergere</figcaption></figure>
+                <figure><img src="./screen_images/stats_view_explanation2.png" alt="Explanation associated with publish symbol - mailing list page"><figcaption><span>3.25 </span>Explicație asociată simbolului de vizualizare a statisticilor în cadrul paginilor de vizualizare a email‑urilor</figcaption></figure>
             </div>
-        </section>
+            </section>
         <section id="hardware_interfaces">
             <h3><span>3.2</span> Interfețe hardware</h3>
             <p>
@@ -557,7 +595,7 @@
                 Serviciile necesare includ o gazdă web, disponibilă fie în formă virtuală, fie în formă fizică, și un furnizor de nume de domeniu. Într-un mediu de producție, este nevoie și de un emițător de certificat SSL pentru a folosi tehnologia HTTPS.
             </p>
             <p>
-                Comunicarea între baza de date și partea de back‑end a aplicației (prin limbajele PHP și Java) vizează în principal următoarele acțiuni:
+                Comunicarea între baza de date și partea de back‑end a aplicației (prin limbajele PHP și Java) vizează în principal următoarele acțiuni:</p>
                 <ul>
                     <li>stocarea temporară a codurilor de verificare pentru autentificare (până la deconectare sau până la expirarea acestora în caz de neutilizare la timp);</li>
                     <li>stocarea adreselor de email corespunzătoare conturilor utilizatorilor, care se actualizează la crearea de noi conturi;</li>
@@ -566,7 +604,6 @@
                     <li>stocarea numărului de vizitatori și a țărilor acestora de origine, care se actualizează la fiecare vizită efectuată asupra unui email publicat;</li>
                     <li>interogarea bazei de date în vederea obținerii de informații în funcție de datele stocate mai sus (de exemplu, despre existența unui anumit cont).</li>
                 </ul>
-            </p>
             <p>
                 În privința detaliilor mai concrete de implementare (mai ales pe partea de back‑end) a proiectului, acestea urmează a fi stabilite.
             </p>
@@ -621,7 +658,7 @@
             <section id="authentification3">
                 <h4><span>4.1.3</span> Cerințe funcționale</h4>
                 <p>
-                    Pentru ca un utilizator să se poată autentifica, el trebuie să folosească o adresă validă și la care are acces, pentru a putea folosi în continuare codul de verificare trimis la acea adresă.
+                    Pentru ca un utilizator să se poată autentifica, el trebuie să folosească o adresă de email validă și la care are acces, pentru a putea folosi în continuare codul de verificare trimis la acea adresă.
                 </p>
                 <p>
                     Pentru ca un utilizator să se poată autentifica, el trebuie să introducă exact (cifră cu cifră) codul de verificare de 6 cifre trimis pe adresa de email furnizată.
@@ -683,10 +720,10 @@
             <section id="view_content1">
                 <h4><span>4.3.1</span> Descriere și Prioritate</h4>
                 <p>
-                    Orice utilizator poate vizualiza conținutul unui email din oricare cele trei liste puse la dispoziție în paginile aplicației.
+                    Orice utilizator poate vizualiza conținutul unui email din oricare dintre cele trei liste puse la dispoziție în paginile aplicației.
                 </p>
                 <p>
-                    Această caracteristică a sistemului are proprietate ridicată întrucât, dacă un utilizator nu își mai aduce aminte exact conținutul email-ului pe care dorește să îl publice sau al unui email deja publicat, el trebuie să fie capabil să îl revadă, dar și deoarece orice utilizator trebuie să aibă posibilitatea de a vizualiza email-urile la care a primit acces și pe care le are la dispoziție în pagina <i>Archived emails</i>.
+                    Această caracteristică a sistemului are proprietate ridicată întrucât, dacă un utilizator nu își mai aduce aminte cu exactitate conținutul email-ului pe care dorește să îl publice sau al unui email deja publicat, el trebuie să fie capabil să îl revadă, dar și deoarece orice utilizator trebuie să aibă posibilitatea de a vizualiza email-urile la care a primit acces și pe care le are la dispoziție în pagina <i>Archived emails</i>.
                 </p>
             </section>
             <section id="view_content2">
@@ -696,6 +733,9 @@
                 </p>
                 <p>
                     În cazul în care email-ul îi aparține și este sau a mai fost publicat, după conținutul email-ului va putea vizualiza și statisticile acestuia și link-ul aferent publicării.
+                </p>
+                <p>
+                    Dacă un utilizator neautentificat va încerca, din pagina de vizualizare a conținutului unui email distribuit de către un alt utilizator către acesta, să acceseze orice alt element al meniului de navigare din partea stângă în afara documentației, va fi notificat printr-un mesaj sugestiv de eroare că accesul la secțiunea respectivă i-a fost refuzat.
                 </p>
             </section>
             <section id="view_content3">
