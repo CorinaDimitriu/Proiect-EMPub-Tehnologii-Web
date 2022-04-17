@@ -310,6 +310,9 @@
             <p>
                 Dintr-o perspectivă de ansamblu, aplicația are 3 componente: o aplicație web care servește clientului informațiile relevante dintr-o bază de date, baza de date propriu-zisă, și o suită de script-uri care gestionează contul de email aferent acestei aplicații.
             </p>
+            <p>
+                Aceste trei componente reprezintă cele trei părți esențiale pentru o structură MVC. Model este baza de date, View este site-ul web, iar controller sunt codul PHP, Javascript și robot-ul de mail care fac legătura între front si back-end. Totodată, aceste elemente coincid cu o arhitectură generală bazată pe microservicii, anume baza de date, site-ul web și robotul de mail.
+            </p>
             <div>
                 <figure typeof="sa:image"><img alt="diagram" src="./diagrams/diagram1.svg" title="flow diagram"><figcaption><span>2.1</span> Structura generală a aplicației</figcaption></figure>
             </div>
@@ -321,7 +324,7 @@
                 La nivel global, aplicația îi permite oricărui utilizator să se autentifice și să creeze, în propriul nume, postări de tip blog cu structură de email. Pentru aceasta, se începe cu trimiterea unui email (cu titlul și conținutul postării) către o adresă de email controlată de robotul de email anterior menționat.
             </li>
             <li>
-                Eamil-urile trimise la adresa menționată mai sus, dar încă nepublicate, vor fi listate în secțiunea/pagina intitulată <i>Publish queue</i> (ce poate fi selectată din meniul de navigare).
+                Email-urile trimise la adresa menționată mai sus, dar încă nepublicate, vor fi listate în secțiunea/pagina intitulată <i>Publish queue</i> (ce poate fi selectată din meniul de navigare).
             </li>
             <li>
                 Pentru a finaliza procesul de publicare a unui email, utilizatorul se autentifică în aplicație și selectează email‑ul din secțiunea <i>Publish queue</i>.
