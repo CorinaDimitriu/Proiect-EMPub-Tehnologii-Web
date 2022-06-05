@@ -5,20 +5,13 @@ import java.util.regex.Pattern;
 //POP3 supports only a single folder named "INBOX".
 //vede doar email-urile necitite
 //cont google -> security -> less secure app access on
-/* maven dependency
-<dependency>
-	<groupId>com.sun.mail</groupId>
-        <artifactId>javax.mail</artifactId>
-        <version>1.6.2</version>
-</dependency>
-*/
 
 public class Main {
     public static void main(String[] args) {
 
         String host = "pop.gmail.com";
-        String username = "email@gmail.com";
-        String password = "parola";
+        String username = "emailpublisher1@gmail.com";
+        String password = "smkzskskfganhqhs";
 
         connect(host, username, password);
     }
