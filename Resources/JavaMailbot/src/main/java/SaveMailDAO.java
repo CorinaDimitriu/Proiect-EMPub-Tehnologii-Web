@@ -12,6 +12,19 @@ public class SaveMailDAO {
     public static void saveInDatabase(String email, String subject, String content) throws IOException
     {
         int numberOfEmails = countEmails(email) + 1;
+        if (subject.length() > 100) {
+            subject = subject.substring(0, 99);
+            subject += "...";
+        }
+        StringBuilder emailContent = new StringBuilder("<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "<head>\n" +
+                "<title>Email</title>\n" +
+                "<meta charset=\"utf-8\"/>\n" +
+                "</head>\n" +
+                "<body>");
+        emailContent.append(content);
+        emailContent.append("</body>\n</html>");
         try (
                 Connection con = Database.getConnection();
                 PreparedStatement preparedStatement = con.prepareStatement(
@@ -24,7 +37,7 @@ public class SaveMailDAO {
             BufferedWriter output = null;
             File file = new File("./DownloadedMails/" + email + "_" + numberOfEmails + ".html");
             output = new BufferedWriter(new FileWriter(file));
-            output.write(content);
+            output.write(emailContent.toString());
             output.flush();
             output.close();
             preparedStatement.setString(3, file.getPath());
