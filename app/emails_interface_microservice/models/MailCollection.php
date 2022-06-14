@@ -1,0 +1,15 @@
+<?php
+require_once '../emails_interface_microservice/models/Email.php';
+class MailCollection implements JsonSerializable
+{
+    private $mailCollection = array();
+
+    public function add(Email $email) {
+        array_push($this->mailCollection, $email);
+    }
+
+    public function jsonSerialize() {
+        return (object) get_object_vars($this);
+    }
+}
+?>
