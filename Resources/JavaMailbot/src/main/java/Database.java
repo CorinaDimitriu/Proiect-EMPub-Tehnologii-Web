@@ -9,10 +9,11 @@ public class Database {
     private static final String PASSWORD = "MAILBOT";
     private static Connection connection = null;
 
-    private Database() {}
+    private Database() {
+    }
 
     public static Connection getConnection() throws SQLException {
-        if(connection == null)
+        if (connection == null)
             createConnection();
         return connection;
     }
@@ -28,7 +29,10 @@ public class Database {
 
     public static void closeConnection() {
         try {
-            if (connection != null) {connection.close(); connection = null;}
+            if (connection != null) {
+                connection.close();
+                connection = null;
+            }
         } catch (SQLException e) {
             System.err.println(e);
         }
