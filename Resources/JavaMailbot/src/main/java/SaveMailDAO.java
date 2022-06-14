@@ -9,8 +9,7 @@ import java.sql.*;
 
 public class SaveMailDAO {
 
-    public static void saveInDatabase(String email, String subject, String content) throws IOException
-    {
+    public SaveMailDAO(String email, String subject, String content) throws IOException {
         int numberOfEmails = countEmails(email) + 1;
         if (subject.length() > 100) {
             subject = subject.substring(0, 99);
@@ -49,7 +48,7 @@ public class SaveMailDAO {
         }
     }
 
-    public static int countEmails(String email) {
+    public int countEmails(String email) {
         try (Connection con = Database.getConnection()) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select count(*) from usermails where user_email='" + email + "'");
