@@ -3,16 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Queue of Emails</title>
+    <title>My Friends' Emails</title>
     <link rel="stylesheet" href="../../Mail_Listing.css">
-    <link rel="stylesheet" href="../../Menu_Style_Queue.css">
+    <link rel="stylesheet" href="../../Menu_Style_Archived.css">
     <script src="../../Publishing_Emails.js" type="module"></script>
     <script src="../../Delete_Triggers.js" type="module"></script>
-    <script src="../../Publish_Triggers.js" type="module"></script>
     <script src="../../Count_Emails.js" type="module"></script>
   </head>
   <body>
-    <div tabindex="0" id="smallerMenu" class="smallerMenu"><img class = "dropdown_logo" src = "../../assets/logo_for_menu_gray.svg" alt="logo at phone menu size"/></div>
+    <div tabindex="0" id="smallerMenu" class="smallerMenu"><img class = "dropdown_logo" src = "../../assets/logo_for_menu_gray.svg" alt="logo at phone size"/></div>
     <nav id="menu">
       <ul class = "left_side_menu">
         <li id="menu_closer"><img class = "logo" src = "../../assets/logo_for_menu.svg" alt="logo at original size"/></li>
@@ -28,11 +27,10 @@
       </ul>
     </nav>
     <header>
-      <p>My publish queue</p>
+      <p>My friends' emails</p>
     </header>
     <main>
       <div class="explanation" id="explanation_delete"><p>Delete</p></div>
-      <div class="explanation" id="explanation_publish"><p>Publish</p></div>
       <?php
         header('Content-Type: text/html; charset=utf-8');
         if(isset ($_COOKIE['number_of_mails'])) 
@@ -60,11 +58,12 @@
             if(strlen($title) > 20) {
                 $title = substr($title, 0, 20) . '...';
             }
-            echo "<h2><form id=\"emailFormTitle". ($i)."\""." action=\"http://localhost:1080/public/DisplayEmailContent/index\"" . " method=\"post\">".
+            echo "<h2><form id=\"emailFormTitle". ($i)."\""." action=\"http://localhost:1080/public/DisplayArchivedEmailContent/index\"" . " method=\"post\">".
             "<p><a href=\"javascript:;\" onclick=\"document.getElementById('emailFormTitle" . ($i) . "').submit();"."\">"; /*echo substr(ltrim($digest->text), 0, 50);*/ echo $title . "</a></p>".
             "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
             "<input type=\"hidden\" name=\"emailTitle\" value=\"" . $arrayMails[$i]['subject'] . "\"/>" .
             "<input type=\"hidden\" name=\"emailSender\" value=\"" . $arrayMails[$i]['user']['email'] . "\"/>" .
+            "<input type=\"hidden\" name=\"emailOwner\" value=\"" . $arrayMails[$i]['friend']['email'] . "\"/>" .
             "</form></h2>";
             
             /*$request_as_string = "https://extractorapi.com/api/v1/extractor/?apikey=8a9fa86f24a4577a8f7d297fa1cfdd2a9f0bcef6&url=".'https://0622-2a02-2f0e-5614-a000-f852-bb83-de1c-ddc.eu.ngrok.io/public/GetEmailContent/index?emailName='.$arrayMails[$i]["contentFile"];
@@ -83,19 +82,17 @@
             }  
             $digest = json_decode($res);               
             curl_close ($c);*/
-            echo "<form id=\"emailFormPreview". ($i)."\""." action=\"http://localhost:1080/public/DisplayEmailContent/index\"" . " method=\"post\">".
+            echo "<form id=\"emailFormPreview". ($i)."\""." action=\"http://localhost:1080/public/DisplayArchivedEmailContent/index\"" . " method=\"post\">".
             "<p><a href=\"javascript:;\" onclick=\"document.getElementById('emailFormPreview" . ($i) . "').submit();"."\">"; /*echo substr(ltrim($digest->text), 0, 50);*/ echo "...<br>Click to view full content of email...</a></p>".
             "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
             "<input type=\"hidden\" name=\"emailTitle\" value=\"" . $arrayMails[$i]['subject'] . "\"/>" .
             "<input type=\"hidden\" name=\"emailSender\" value=\"" . $arrayMails[$i]['user']['email'] . "\"/>" .
+            "<input type=\"hidden\" name=\"emailOwner\" value=\"" . $arrayMails[$i]['friend']['email'] . "\"/>" .
             "</form>";
-            echo "<div class=\"icons\">".
-            "<form id=\"emailFormPublish". ($i)."\""." action=\"http://localhost:1080/public/PublishSettings/index\"" . " method=\"post\">".
-            "<a href=\"javascript:;\" onclick=\"document.getElementById('emailFormPublish" . ($i) . "').submit();"."\">"; echo "<img src=\"../../assets/publish.svg\" alt=\"view publish option\" id=\"publish".($i)."\"/></a>".
-            "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
-            "</form>";
-            echo "<form id=\"emailFormDelete". ($i)."\""." action=\"http://localhost:1080/public/DeleteFromPublishQueue/index\"" . " method=\"post\">".
+            echo "<div class=\"icons\">
+            <form id=\"emailFormDelete". ($i)."\""." action=\"http://localhost:1080/public/DeleteFromArchived/index\"" . " method=\"post\">".
             "<a href=\"javascript:;\" onclick=\"document.getElementById('emailFormDelete" . ($i) . "').submit();"."\">"; echo "<img src=\"../../assets/delete.svg\" alt=\"delete option\" id=\"delete".($i)."\"/></a>".
+            "<input type=\"hidden\" name=\"emailSender\" value=\"" . $arrayMails[$i]['friend']['email'] . "\"/>" .
             "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
             "</form>";
             echo "</div></section>";
@@ -107,8 +104,8 @@
     }
     echo "</main>
     <footer>
-      <a href=\"http://localhost:1080/public/DisplayUnpublishedEmails/index?noPage=". $arrayMails[0] - 1 . "&noSections=" . $_COOKIE["number_of_mails"] ."\"><img src=\"../../assets/arrow.svg\" alt=\"arrow to previous page\"/></a>
-      <a href=\"http://localhost:1080/public/DisplayUnpublishedEmails/index?noPage=". $next . "&noSections=" . $_COOKIE["number_of_mails"]."\"><img src=\"../../assets/arrow.svg\" alt=\"arrow to next page\"/></a>
+      <a href=\"http://localhost:1080/public/DisplayArchivedEmails/index?noPage=". $arrayMails[0] - 1 . "&noSections=" . $_COOKIE["number_of_mails"] ."\"><img src=\"../../assets/arrow.svg\" alt=\"arrow to previous page\"/></a>
+      <a href=\"http://localhost:1080/public/DisplayArchivedEmails/index?noPage=". $next . "&noSections=" . $_COOKIE["number_of_mails"]."\"><img src=\"../../assets/arrow.svg\" alt=\"arrow to next page\"/></a>
     </footer>"
     ?>
   </body>

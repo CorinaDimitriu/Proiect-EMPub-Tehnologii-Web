@@ -7,7 +7,7 @@ include_once '../authentication_microservice/libs/php-jwt-main/src/JWT.php';
 include_once '../authentication_microservice/libs/php-jwt-main/src/Key.php';
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
-class DisplayPublishedEmails extends Controller
+class DisplayArchivedEmails extends Controller
 {
     public function index ($noPage = 1, $noSections = 6) {
         $jwt = '';
@@ -27,7 +27,7 @@ class DisplayPublishedEmails extends Controller
             $email = (($decoded->data)->email);
             if($noPage == 0)
                $noPage = 1;
-            $request_as_string = "http://localhost:8181/public/GetPublishedEmails/index?email=".$email."&noPage=". $noPage.'&noSections='.$noSections;
+            $request_as_string = "http://localhost:8181/public/GetArchivedEmails/index?email=".$email."&noPage=". $noPage.'&noSections='.$noSections;
             $c = curl_init ();
             curl_setopt ($c, CURLOPT_URL, $request_as_string);              // stabilim URL-ul serviciului
             curl_setopt ($c, CURLOPT_RETURNTRANSFER, true);  // rezultatul cererii va fi disponibil ca șir de caractere
@@ -38,7 +38,7 @@ class DisplayPublishedEmails extends Controller
             $res = curl_exec ($c);  
             curl_close ($c);
             $decodeRes = json_decode($res,TRUE);
-            $this->view('home/My_Published_Emails',$res);
+            $this->view('home/My_Archived_Emails',$res);
        }
        else {
            $data = Array("data" => "Your session has expired. Please login again.", "back" => "localhost:1818/public/StartBrowsing/index/");

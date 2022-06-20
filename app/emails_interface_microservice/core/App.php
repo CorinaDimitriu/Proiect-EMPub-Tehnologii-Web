@@ -26,7 +26,8 @@ class App
                 unset($path[2]);
             }
         }
-        parse_str($url['query'], $this->params);
+        if(isset($url['query']))
+           parse_str($url['query'], $this->params);
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
 

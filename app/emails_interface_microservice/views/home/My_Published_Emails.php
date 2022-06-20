@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Queue of Emails</title>
+    <title>My Published Emails</title>
     <link rel="stylesheet" href="../../Mail_Listing.css">
-    <link rel="stylesheet" href="../../Menu_Style_Queue.css">
+    <link rel="stylesheet" href="../../Menu_Style_Published.css">
     <script src="../../Publishing_Emails.js" type="module"></script>
     <script src="../../Delete_Triggers.js" type="module"></script>
-    <script src="../../Publish_Triggers.js" type="module"></script>
+    <script src="../../Statistics_Triggers.js" type="module"></script>
     <script src="../../Count_Emails.js" type="module"></script>
   </head>
   <body>
-    <div tabindex="0" id="smallerMenu" class="smallerMenu"><img class = "dropdown_logo" src = "../../assets/logo_for_menu_gray.svg" alt="logo at phone menu size"/></div>
+    <div tabindex="0" id="smallerMenu" class="smallerMenu"><img class = "dropdown_logo" src = "./assets/logo_for_menu_gray.svg" alt="logo at phone menu size"/></div>
     <nav id="menu">
       <ul class = "left_side_menu">
         <li id="menu_closer"><img class = "logo" src = "../../assets/logo_for_menu.svg" alt="logo at original size"/></li>
@@ -28,11 +28,11 @@
       </ul>
     </nav>
     <header>
-      <p>My publish queue</p>
+      <p>My published emails</p>
     </header>
     <main>
       <div class="explanation" id="explanation_delete"><p>Delete</p></div>
-      <div class="explanation" id="explanation_publish"><p>Publish</p></div>
+      <div class="explanation" id="explanation_stats"><p>View statistics</p></div>
       <?php
         header('Content-Type: text/html; charset=utf-8');
         if(isset ($_COOKIE['number_of_mails'])) 
@@ -60,7 +60,7 @@
             if(strlen($title) > 20) {
                 $title = substr($title, 0, 20) . '...';
             }
-            echo "<h2><form id=\"emailFormTitle". ($i)."\""." action=\"http://localhost:1080/public/DisplayEmailContent/index\"" . " method=\"post\">".
+            echo "<h2><form id=\"emailFormTitle". ($i)."\""." action=\"http://localhost:1080/public/DisplayPublishedEmailContent/index\"" . " method=\"post\">".
             "<p><a href=\"javascript:;\" onclick=\"document.getElementById('emailFormTitle" . ($i) . "').submit();"."\">"; /*echo substr(ltrim($digest->text), 0, 50);*/ echo $title . "</a></p>".
             "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
             "<input type=\"hidden\" name=\"emailTitle\" value=\"" . $arrayMails[$i]['subject'] . "\"/>" .
@@ -83,18 +83,15 @@
             }  
             $digest = json_decode($res);               
             curl_close ($c);*/
-            echo "<form id=\"emailFormPreview". ($i)."\""." action=\"http://localhost:1080/public/DisplayEmailContent/index\"" . " method=\"post\">".
+            echo "<form id=\"emailFormPreview". ($i)."\""." action=\"http://localhost:1080/public/DisplayPublishedEmailContent/index\"" . " method=\"post\">".
             "<p><a href=\"javascript:;\" onclick=\"document.getElementById('emailFormPreview" . ($i) . "').submit();"."\">"; /*echo substr(ltrim($digest->text), 0, 50);*/ echo "...<br>Click to view full content of email...</a></p>".
             "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
             "<input type=\"hidden\" name=\"emailTitle\" value=\"" . $arrayMails[$i]['subject'] . "\"/>" .
             "<input type=\"hidden\" name=\"emailSender\" value=\"" . $arrayMails[$i]['user']['email'] . "\"/>" .
             "</form>";
-            echo "<div class=\"icons\">".
-            "<form id=\"emailFormPublish". ($i)."\""." action=\"http://localhost:1080/public/PublishSettings/index\"" . " method=\"post\">".
-            "<a href=\"javascript:;\" onclick=\"document.getElementById('emailFormPublish" . ($i) . "').submit();"."\">"; echo "<img src=\"../../assets/publish.svg\" alt=\"view publish option\" id=\"publish".($i)."\"/></a>".
-            "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
-            "</form>";
-            echo "<form id=\"emailFormDelete". ($i)."\""." action=\"http://localhost:1080/public/DeleteFromPublishQueue/index\"" . " method=\"post\">".
+            echo "<div class=\"icons\">
+            <a href=\"./Email_Template_Published.html#statistics_beginning\"><img src=\"../../assets/stats_icon.svg\" alt=\"view statistics option\" id=\"stats" .($i)."\"/></a>";
+            echo "<form id=\"emailFormDelete". ($i)."\""." action=\"http://localhost:1080/public/DeleteFromPublished/index\"" . " method=\"post\">".
             "<a href=\"javascript:;\" onclick=\"document.getElementById('emailFormDelete" . ($i) . "').submit();"."\">"; echo "<img src=\"../../assets/delete.svg\" alt=\"delete option\" id=\"delete".($i)."\"/></a>".
             "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
             "</form>";
@@ -107,8 +104,8 @@
     }
     echo "</main>
     <footer>
-      <a href=\"http://localhost:1080/public/DisplayUnpublishedEmails/index?noPage=". $arrayMails[0] - 1 . "&noSections=" . $_COOKIE["number_of_mails"] ."\"><img src=\"../../assets/arrow.svg\" alt=\"arrow to previous page\"/></a>
-      <a href=\"http://localhost:1080/public/DisplayUnpublishedEmails/index?noPage=". $next . "&noSections=" . $_COOKIE["number_of_mails"]."\"><img src=\"../../assets/arrow.svg\" alt=\"arrow to next page\"/></a>
+      <a href=\"http://localhost:1080/public/DisplayPublishedEmails/index?noPage=". $arrayMails[0] - 1 . "&noSections=" . $_COOKIE["number_of_mails"] ."\"><img src=\"../../assets/arrow.svg\" alt=\"arrow to previous page\"/></a>
+      <a href=\"http://localhost:1080/public/DisplayPublishedEmails/index?noPage=". $next . "&noSections=" . $_COOKIE["number_of_mails"]."\"><img src=\"../../assets/arrow.svg\" alt=\"arrow to next page\"/></a>
     </footer>"
     ?>
   </body>

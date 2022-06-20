@@ -1,9 +1,8 @@
 <?php
-require_once '../emails_interface_microservice/models/User.php';
-require_once '../emails_interface_microservice/models/Email.php';
 class DeleteFromPublished extends Controller
 {
     public function index($content = '') {
+        $content = $_POST['emailName'];
         $request_as_string = "http://localhost:8181/public/DeleteFromPublished/index?content=".$content;
         $c = curl_init();
         curl_setopt($c, CURLOPT_URL, $request_as_string);
@@ -13,7 +12,8 @@ class DeleteFromPublished extends Controller
         curl_setopt($c, CURLOPT_HTTPHEADER, ['Accept: application/json']);
         $res = curl_exec($c);
         curl_close($c);
-        $this->view('home/index', $res);
+        
+        $this->view('home/Loading',"http://localhost:1080/public/DisplayPublishedEmails/index?noPage=1&noSections=6");
     }
 }
 ?>
