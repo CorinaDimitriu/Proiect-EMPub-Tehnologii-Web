@@ -1,11 +1,11 @@
-#### About .htacces files
+### About .htacces files
 
-There are 2 of them. The first one is located in the public folder of the microservice and contains:
+#### There are 2 of them. The first one is located in the public folder of the microservice and contains:
 
  Options -Indexes
 
 
-The second one is located in the microservice backend folder and contains:
+#### The second one is located in the microservice backend folder and contains:
 
  Options -MultiViews
  RewriteEngine On
