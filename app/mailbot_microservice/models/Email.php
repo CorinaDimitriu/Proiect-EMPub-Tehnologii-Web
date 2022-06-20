@@ -4,6 +4,8 @@ class Email implements JsonSerializable
     private User $from;
     private String $subject;
     private String $mailContentFile;
+    private $content; //the effective content of the mail html - big String
+    private $friend;
 
     public function setFrom(User $from) {
         $this->from = $from;
@@ -13,8 +15,16 @@ class Email implements JsonSerializable
         return $this->from;
     }
 
+    public function setFriend(Friend $from) {
+        $this->friend = $from;
+    }
+
+    public function getFriend() {
+        return $this->friend;
+    }
+
     public function setSubject(String $subject) {
-        $this->subject = utf8_encode($subject);
+        $this->subject = $subject;
     }
 
     public function getSubject() {
@@ -29,11 +39,22 @@ class Email implements JsonSerializable
         return $this->mailContentFile;
     }
 
+    public function setContent($content) {
+        $this->content = $content;
+    }
+
+    public function getContent() {
+        return $this->content;
+    }
+
+    #[\ReturnTypeWillChange]
     public function jsonSerialize() {
         return array(
             "user" => $this->from,
             "subject" => $this->subject,
-            "content" => $this->mailContentFile
+            "contentFile" => $this->mailContentFile,
+            "content" => $this->content,
+            "friend" => $this->friend
        );
     }
 }

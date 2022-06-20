@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-class User implements JsonSerializable
+class Friend implements JsonSerializable
 {
     private String $email = '';
 

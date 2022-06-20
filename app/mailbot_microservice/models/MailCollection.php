@@ -8,6 +8,7 @@ class MailCollection implements JsonSerializable
         array_push($this->mailCollection, $email);
     }
 
+    #[\ReturnTypeWillChange]
     public function jsonSerialize() {
         return (object) get_object_vars($this);
     }

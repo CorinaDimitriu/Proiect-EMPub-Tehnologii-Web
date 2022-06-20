@@ -1,6 +1,4 @@
 <?php
-require_once '../mailbot_microservice/models/User.php';
-require_once '../mailbot_microservice/models/Email.php';
 class DeleteFromArchived extends Controller
 {
     public function index ($email = '', $content = '') {

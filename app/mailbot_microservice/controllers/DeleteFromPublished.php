@@ -1,6 +1,4 @@
 <?php
-require_once '../mailbot_microservice/models/User.php';
-require_once '../mailbot_microservice/models/Email.php';
 class DeleteFromPublished extends Controller
 {
     public function index ($content = '') {
@@ -11,7 +9,7 @@ class DeleteFromPublished extends Controller
    }
 
     private function deleteFromDatabase($conn, String $content) {
-        $sql = "DELETE FROM usermails WHERE content_email= :content";
+        $sql = "UPDATE usermails SET published = 0 WHERE content_email= :content";
         $stid = oci_parse($conn, $sql);
         oci_bind_by_name($stid, ':content', $content);
         oci_execute($stid);
