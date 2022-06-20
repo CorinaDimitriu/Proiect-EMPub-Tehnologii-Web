@@ -1,6 +1,4 @@
 <?php
-require_once '../mailbot_microservice/models/User.php';
-require_once '../mailbot_microservice/models/Email.php';
 class DeleteFromPublishQueue extends Controller
 {
     public function index ($content = '') {

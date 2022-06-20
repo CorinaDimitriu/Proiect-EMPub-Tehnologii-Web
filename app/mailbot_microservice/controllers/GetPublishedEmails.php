@@ -12,7 +12,6 @@ class GetPublishedEmails extends Controller
    }
 
     private function retrieveFromDatabase($conn, String $email) {
-        $mailsArray = new MailCollection;
         $user = $this->model('User');
         $user->setEmail($email);
         $sql = "SELECT subject, content_email FROM usermails WHERE user_email = :user_email AND published = 1";
@@ -24,7 +23,7 @@ class GetPublishedEmails extends Controller
            $mail->setSubject($row['SUBJECT']);
            $mail->setFrom($user);
            $mail->setMailContentFile($row['CONTENT_EMAIL']);
-           $mailsArray->add($mail);
+           array_push(mailsArray,$mail);
         }
         return $mailsArray;
    }
