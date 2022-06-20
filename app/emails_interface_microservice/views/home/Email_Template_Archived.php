@@ -33,6 +33,36 @@
         if(strlen($displayedEmail[0]['emailTitle']) > 25) {
           $displayedEmail[0]['emailTitle'] = substr($displayedEmail[0]['emailTitle'], 0, 25) . '...';
         }
+
+        $ip = "84.117.185.149";//$_SERVER['REMOTE_ADDR'];
+        //MUST BE HARDCODED during presentation; will not work with local IP's
+        $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+        $country=$details->country;
+
+        $url = "http://127.0.0.1:9090/ords/useragent/add_view/";
+        //change IP to IP of server
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+          "Content-Type: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        $emailname = $displayedEmail[0]['emailName'];
+
+        $data = array(
+          "post_id" => $emailname,
+          "country" => $country,
+        );
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+      
+        curl_exec($curl);
+        curl_close($curl);
+        
         header('Content-Type: text/html; charset=utf-8');
         echo "<h1>From:&nbsp;</h1>
         <form id=\"emailFormOnly\" action=\"http://localhost:1080/public/DisplayArchivedEmailsOnly/index?noPage=1&noSections="; if(isset ($_COOKIE['number_of_mails'])) {echo $_COOKIE['number_of_mails'];} else echo '6'; echo "\" method=\"post\">".
@@ -61,5 +91,12 @@
         . $displayedEmail[0]['emailContent'] ."</article>";
       ?>
     </main>
+    <script>
+      //create a web request using XMLhttpRequest
+      var xhr = new XMLHttpRequest();
+      //open a connection to the server
+      var url = "http://127.0.0.1:9090/ords/useragent/add_view/";
+      const post_id
+    </script>
   </body>
 </html>
