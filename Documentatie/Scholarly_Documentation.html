@@ -77,6 +77,10 @@
             height: auto;
         }
 
+        body figure {
+            text-align: center;
+        }
+
         figure img {
             border: 1px solid black;
             border-radius: 3px;
@@ -87,7 +91,12 @@
             text-align: center;
         }
 
-        body .login_pages, .publish, .stats, .explanations  {
+        /* body .login_pages{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+        } */
+
+        body .publish, .stats, .explanations  {
             display: grid;
             grid-template-columns: repeat(2,1fr);
             gap: 0.1vw;
@@ -329,6 +338,14 @@
             </p>
             <div>
                 <figure typeof="sa:image"><img alt="diagram" src="./diagrams/diagram1.svg" title="flow diagram"><figcaption><span>2.1</span> Structura general&#259; a aplica&#355;iei</figcaption></figure>
+
+                <figure typeof="sa:image"><img alt="Level 1 of C4 diagram" src="./diagrams/c4-level1.svg" title="c4 diagram - level 1"><figcaption><span>2.2</span> Diagrama C4 a aplicației - de nivel 1</figcaption></figure>
+
+                <figure typeof="sa:image"><img alt="Level 2 of C4 diagram" src="./diagrams/c4-level2.svg" title="c4 diagram - level 2"><figcaption><span>2.3</span> Diagrama C4 a aplicației - de nivel 2</figcaption></figure>
+
+                <figure typeof="sa:image"><img alt="Level 3 of C4 diagram for Web Application" src="./diagrams/c4-level3_web.svg" title="c4 diagram - level 3 for web"><figcaption><span>2.4</span> Diagrama C4 a aplicației - de nivel 3 pentru Web Application</figcaption></figure>
+
+                <figure typeof="sa:image"><img alt="Level 3 of C4 diagram for API Application" src="./diagrams/c4-level3_api.svg" title="c4 diagram - level 3 for api"><figcaption><span>2.5</span> Diagrama C4 a aplicației - de nivel 3 pentru API Application</figcaption></figure>
             </div>
         </section>
         <section id="product_functions">
@@ -344,7 +361,7 @@
                 Pentru a finaliza procesul de publicare a unui email, utilizatorul se autentific&#259; &#238;n aplica&#355;ie &#351;i selecteaz&#259; email‑ul din sec&#355;iunea <i>Publish queue</i>.
             </li>
             <li>
-                Pentru autentificare, pe l&#226;ng&#259; o adres&#259; de email valid&#259;, &#238;i este cerut utilizatorului un cod de verificare ce este trimis pe adresa de email introdus&#259; anterior &#238;n sec&#355;iunea dedicat&#259;, precum &#351;i &#355;ara acestuia de origine.
+                Pentru autentificare, pe l&#226;ng&#259; o adres&#259; de email valid&#259;, &#238;i este cerut utilizatorului un cod de verificare ce este trimis pe adresa de email introdus&#259; anterior &#238;n sec&#355;iunea dedicat&#259;.
             </li>
             <li>
                 Ulterior select&#259;rii op&#355;iunii de <i>Publish</i>, utilizatorul va fi redirec&#355;ionat c&#259;tre un formular de completare a op&#355;iunilor de publicare referitoare la confiden&#355;ialitate &#351;i durat&#259;.
@@ -410,7 +427,7 @@
         <section id="constraints">
             <h3><span>2.5</span> Constr&#226;ngeri de design &#351;i implementare</h3>
             <p>
-                Dat&#259; fiind concentrarea cursului pe studiul tehnologiilor web clasice, proiectul utilizeaz&#259; limbajele PHP, SQL/PLSQL &#350;i Java, pentru partea de back‑end &#351;i integrarea &#238;ntre front‑end &#351;i back‑end, &#351;i limbajele HTML (markup language), CSS (stylesheet language) &#351;i Javascript, pentru partea de front‑end. 
+                Dat&#259; fiind concentrarea cursului pe studiul tehnologiilor web clasice, proiectul utilizeaz&#259; limbajele PHP, SQL/PLSQL &#351;i Java, pentru partea de back‑end &#351;i integrarea &#238;ntre front‑end &#351;i back‑end, &#351;i limbajele HTML (markup language), CSS (stylesheet language) &#351;i Javascript, pentru partea de front‑end. 
             </p>
             <p>
                 &#206;n ceea ce prive&#351;te constr&#226;ngerile de design, acesta este intuitiv, pentru a transmite clar utilizatorilor modul de folosire a aplica&#355;iei, f&#259;r&#259; a fi necesar un studiu &#238;ndelungat sau riguros al manualului dedicat.
@@ -436,7 +453,7 @@
         <section id="assumptions">
             <h3><span>2.7</span> Presupuneri &#351;i dependen&#355;e</h3>
             <p>
-                &#206;n realizarea proiectului, se simuleaz&#259; o apropiere c&#226;t mai fidel&#259; de scenariul real al cre&#259;rii unei aplica&#355;ii web pentru publicarea de email‑uri, ce rezolv&#259; problema, identificat&#259; &#238;ntr‑o varietate de grupuri sociale, a redirec&#355;ion&#259;rii de email‑uri c&#259;tre un public numeros. Prin urmare, func&#355;ionarea aplica&#355;iei depinde de controlul asupra contului men&#355;ionat la &#238;nceputul prezentului document, <i>empub@gmail.com</i>, prin integrare cu platforma Gmail folosindu‑ne de Javamail API.
+                &#206;n realizarea proiectului, se simuleaz&#259; o apropiere c&#226;t mai fidel&#259; de scenariul real al cre&#259;rii unei aplica&#355;ii web pentru publicarea de email‑uri, ce rezolv&#259; problema, identificat&#259; &#238;ntr‑o varietate de grupuri sociale, a redirec&#355;ion&#259;rii de email‑uri c&#259;tre un public numeros. Prin urmare, func&#355;ionarea aplica&#355;iei depinde de controlul asupra contului men&#355;ionat la &#238;nceputul prezentului document, <i>emailpublisher1@gmail.com</i>, prin integrare cu platforma Gmail folosindu‑ne de Javamail API.
             </p> 
         </section>
     </section>
@@ -445,12 +462,11 @@
         <section id="user_interfaces">
             <h3><span>3.1</span> Interfe&#355;e pentru utilizator</h3>
             <p>
-                Pentru a avea acces la func&#355;ionalit&#259;&#355;ile puse la dispozi&#355;ie de aplica&#355;ia web EMPub este necesar&#259; autentificarea, care const&#259; &#238;n 3 pa&#351;i simpli:
+                Pentru a avea acces la func&#355;ionalit&#259;&#355;ile puse la dispozi&#355;ie de aplica&#355;ia web EMPub este necesar&#259; autentificarea, care const&#259; &#238;n 2 pa&#351;i simpli:
             </p>
             <ol>
                 <li>introducerea adresei de email &#238;n c&#226;mpul localizat pe prima pagin&#259; &#351;i ap&#259;sarea butonului <i>Continue</i></li>
-                <li>introducerea codului de verificare &#238;n c&#226;mpul localizat pe a doua pagin&#259;, cod primit pe adresa de email specificat&#259; pe pagina anterioar&#259;, &#351;i ap&#259;sarea butonului <i>Continue</i></li>
-                <li>alegerea &#355;&#259;rii de re&#351;edin&#355;&#259; din lista oferit&#259; pe a treia pagin&#259; &#351;i ap&#259;sarea butonului <i>Continue</i>.</li>
+                <li>introducerea codului de verificare &#238;n c&#226;mpul localizat pe a doua pagin&#259;, cod primit pe adresa de email specificat&#259; pe pagina anterioar&#259;, &#351;i ap&#259;sarea butonului <i>Continue</i>.</li>
             </ol>
             <p>
                 Atunci c&#226;nd utilizatorul se afl&#259; cu mouse‑ul pe steaua din mijlocul logo‑ului, aceasta se va m&#259;ri &#351;i va ap&#259;rea &#238;n interiorul ei numele aplica&#355;iei web.
@@ -462,7 +478,6 @@
                 <figure><img src="./screen_images/login_home.png" alt="Login page"><figcaption><span>3.1 </span>Exemplificarea autentific&#259;rii ‑ 1</figcaption></figure>
                 <figure><img src="./screen_images/login_home_star.png" alt="Login page with star animation"><figcaption><span>3.2 </span>Exemplificarea autentific&#259;rii ‑ 2</figcaption></figure>
                 <figure><img src="./screen_images/login_code.png" alt="Login page with verification code"><figcaption><span>3.3 </span>Exemplificarea autentific&#259;rii ‑ 3</figcaption></figure>
-                <figure><img src="./screen_images/login_country.png" alt="Login page with country selector"><figcaption><span>3.4 </span>Exemplificarea autentific&#259;rii ‑ 4</figcaption></figure>
             </div>
             <p>
                 Dup&#259; autentificare, utilizatorul este redirec&#355;ionat c&#259;tre pagina <i>Publish queue</i>. 
@@ -486,7 +501,7 @@
             <p>
                 Motivul pentru care unele ac&#355;iuni (precum publicarea sau vizualizarea de statistici) sunt disponibile &#238;nc&#259; din pagina de listare a colec&#355;iilor de email-uri este proiectarea unui traseu eficient (ca num&#259;r de click‑uri) de ac&#355;iuni ale utilizatorului pentru c&#226;t mai multe scenarii de utilizare.
             </p>
-            <figure><img src="./screen_images/publish_queue.png" alt="Publish queue page"><figcaption><span>3.5 </span> Coada de publicare</figcaption></figure>
+            <figure><img src="./screen_images/publish_queue.png" alt="Publish queue page"><figcaption><span>3.4 </span> Coada de publicare</figcaption></figure>
             <p>
                 Pe pagina <i>Published emails</i> se g&#259;sesc email‑urile pe care utilizatorul le‑a publicat &#351;i a c&#259;ror durat&#259; de publicare nu a expirat la momentul acces&#259;rii acestei pagini. Pentru fiecare email din aceast&#259; pagin&#259; exist&#259; 3 op&#355;iuni:
             </p>
@@ -495,7 +510,7 @@
                 <li>vizualizarea statisticilor aferente cu privire la num&#259;rul de vizualiz&#259;ri, data ultimei vizualiz&#259;ri, &#351;i la &#355;ara de origine a celor care au vizualizat email‑ul, prin ap&#259;sarea butonului reprezentat de pictograma <img src="./assets/stats_icon.svg" alt="See statistics"></li>
                 <li>&#351;tergerea email-ului prin ap&#259;sarea butonului reprezentat de pictograma <img src="./assets/delete.svg" alt="Delete"></li>
             </ul>
-            <figure><img src="./screen_images/published_emails.png" alt="Published emails page"><figcaption><span>3.6 </span>Email‑uri publicate</figcaption></figure>
+            <figure><img src="./screen_images/published_emails.png" alt="Published emails page"><figcaption><span>3.5 </span>Email‑uri publicate</figcaption></figure>
             <p>
                 Pe pagina <i>Archived emails</i> se g&#259;sesc email‑urile publicate de al&#355;i utilizatori la care utilizatorul &#238;n cauz&#259; are acces. Pentru fiecare email din aceast&#259; pagin&#259; exist&#259; 2 op&#355;iuni:
             </p>
@@ -507,7 +522,7 @@
                 Se poate observa c&#259; num&#259;rul de email‑uri listate pe paginile de acest tip (<i>Publish queue</i>, <i>Published emails</i>, <i>Archived emails</i>) variaz&#259; &#238;n func&#355;ie de rezolu&#355;ia/l&#259;&#355;imea &#351;i &#238;n&#259;l&#355;imea, m&#259;surate &#238;n pixeli, pentru dispozitivul de pe care sunt vizualizate.
                 Astfel, acesta variaz&#259; &#238;ntre 1 &#351;i 3 email‑uri pe fiecare dintre cele 2 dimensiuni, lu&#226;nd &#238;n considerare distribuirea spa&#355;iului &#238;n manier&#259; estetic&#259; (dar &#351;i eficient&#259;) pentru utilizator, astfel &#238;nc&#226;t dimensiunea fontului s&#259; r&#259;m&#226;n&#259; &#351;i ea la o m&#259;rime potrivit&#259; &#351;i agreat&#259; de ochiul uman.
             </p>
-            <figure><img src="./screen_images/archived_emails.png" alt="Archived emails page"><figcaption><span>3.7 </span>Email‑uri arhivate</figcaption></figure>
+            <figure><img src="./screen_images/archived_emails.png" alt="Archived emails page"><figcaption><span>3.6 </span>Email‑uri arhivate</figcaption></figure>
             <p>
                 Utilizatorii au acces la meniul din st&#226;nga pe tot parcursul folosirii aplica&#355;iei (dup&#259; finalizarea cu succes a autentific&#259;rii), meniu ce ofer&#259; o serie de butoane cu anumite func&#355;ionalit&#259;&#355;i:
             </p>
@@ -525,7 +540,7 @@
             <p>
                 Dac&#259; utilizatorul dore&#351;te s&#259; vizualizeze con&#355;inutul unui email, el trebuie s&#259; apese pe email‑ul corespunz&#259;tor &#351;i va fi redirec&#355;ionat c&#259;tre pagina ce &#238;l con&#355;ine. Dac&#259; email‑ul &#238;i apar&#355;ine, va fi posibil s&#259; vizualizeze &#351;i statisticile aferente public&#259;rii acestuia.
             </p>
-            <figure><img src="./screen_images/email.png" alt="Content of email"><figcaption><span>3.8 </span>Email‑uri arhivate</figcaption></figure>
+            <figure><img src="./screen_images/email.png" alt="Content of email"><figcaption><span>3.7 </span>Email‑uri arhivate</figcaption></figure>
             <p>
                 Limitarea num&#259;rului de cuvinte din titlul email‑ului, at&#226;t pe paginile de listare de email‑uri, c&#226;t &#351;i pe paginile de afi&#351;are a con&#355;inutului unui email, a lungimii primei propozi&#355;ii existente &#238;n email (sau lipsa unei astfel de introduceri &#238;n cazul &#238;n care email‑ul nu cuprinde con&#355;inut textual), pe paginile de listare de email‑uri, precum &#351;i restr&#226;ngerea num&#259;rului de caractere din adresa de email a emi&#355;&#259;torului, pe paginile de afi&#351;are a con&#355;inutului, se vor realiza prin programare &#238;n zona back‑end, la momentul recep&#355;ion&#259;rii informa&#355;iilor aferente.
                 Caracterele &#238;n exces vor fi suplinite de puncte de suspensie, &#238;ntruc&#226;t se consider&#259; c&#259; spa&#355;iul pus la dispozi&#355;ie (&#238;n manier&#259; Web responsive) este suficient de &#238;nc&#259;p&#259;tor pentru a acoperi esen&#355;a fiec&#259;reia dintre entit&#259;&#355;ile men&#355;ionate mai sus.
@@ -538,10 +553,10 @@
                 Motivul pentru care butonul de vizualizare a statisticilor apare direct &#238;n pagina <i>Published emails</i>, dar nu &#351;i &#238;n pagina <i>Publish queue</i>, este c&#259; nu toate email-urile nepublicate au asociate statistici, &#238;ntruc&#226;t nu toate au mai fost publicate &#238;n prealabil; &#355;in&#226;nd cont de acest aspect, s-a dorit uniformitatea design-ului (&#351;i simplificarea implement&#259;rii ulterioare &#238;ntruc&#226;t nu este nevoie s&#259; se decid&#259; pentru fiecare email nepublicat dac&#259; este sau nu necesar un buton de afi&#351;are a statisticilor pe aceast&#259; pagin&#259;).
             </p>
             <div class="stats">
-                <figure><img src="./screen_images/view_statistics.png" alt="Click on view statistics"><figcaption><span>3.9 </span>Vizualizarea statisticilor ‑ 1</figcaption></figure>
-                <figure><img src="./screen_images/statistics_beginning.png" alt="Choices for statistics"><figcaption><span>3.10 </span>Vizualizarea statisticilor ‑ 2</figcaption></figure>
-                <figure><img src="./screen_images/statistics1.png" alt="Statistics by number of views"><figcaption><span>3.11 </span>Vizualizarea statisticilor ‑ 3</figcaption></figure>
-                <figure><img src="./screen_images/statistics2.png" alt="Statistics by country"><figcaption><span>3.12 </span>Vizualizarea statisticilor ‑ 4</figcaption></figure>
+                <figure><img src="./screen_images/view_statistics.png" alt="Click on view statistics"><figcaption><span>3.8 </span>Vizualizarea statisticilor ‑ 1</figcaption></figure>
+                <figure><img src="./screen_images/statistics_beginning.png" alt="Choices for statistics"><figcaption><span>3.9 </span>Vizualizarea statisticilor ‑ 2</figcaption></figure>
+                <figure><img src="./screen_images/statistics1.png" alt="Statistics by number of views"><figcaption><span>3.10 </span>Vizualizarea statisticilor ‑ 3</figcaption></figure>
+                <figure><img src="./screen_images/statistics2.png" alt="Statistics by country"><figcaption><span>3.11 </span>Vizualizarea statisticilor ‑ 4</figcaption></figure>
             </div>
             <p>
                 Dac&#259; utilizatorul dore&#351;te s&#259; publice un email &#351;i apas&#259; butonul reprezentat de pictograma <img src="./assets/publish.svg" alt="Publish">, el va fi redirec&#355;ionat c&#259;tre o pagin&#259; unde va trebui s&#259; seteze propriet&#259;&#355;ile pentru aceast&#259; ac&#355;iune. Set&#259;rile implicite sunt postare public&#259; &#351;i f&#259;r&#259; durat&#259; de expirare, &#238;ns&#259; odat&#259; ce utilizatorul bifeaz&#259; op&#355;iunile <i>Yes</i>, pentru oricare dintre cele 2 propriet&#259;&#355;i vor ap&#259;rea c&#226;mpuri aparte &#238;n care va putea introduce propriile valori. Butonul <i>Publish</i> &#238;l va redirec&#355;iona pe utilizator pe pagina &#238;n care poate copia link‑ul aferent public&#259;rii email‑ului.
@@ -550,31 +565,31 @@
                 De asemenea, prima unitate de m&#259;sur&#259; a timpului considerat&#259; va fi limitat&#259; la un maxim prestabilit în cazul în care utilizatorul introduce o valoare prea mare (numărul de minute și, respectiv, secunde a fost deja limitat la 59 din codul HTML). Se intenționează introducerea valorii 0 ca valoare implicită pentru unitățile de timp considerate, la încărcarea paginii.
             </p>
             <div class="publish">
-                <figure><img src="./screen_images/publish_email.png" alt="Click on publish icon"><figcaption><span>3.13 </span>Publicarea unui email ‑ 1</figcaption></figure>
-                <figure><img src="./screen_images/publish_settings1.png" alt="Default settings for publishing an email"><figcaption><span>3.14 </span>Publicarea unui email ‑ 2</figcaption></figure>
-                <figure><img src="./screen_images/publish_settings2.png" alt="Personal settings for publishing an email"><figcaption><span>3.15 </span>Publicarea unui email ‑ 3</figcaption></figure>
-                <figure><img src="./screen_images/copy_link.png" alt="Copy link of published email"><figcaption><span>3.16 </span>Publicarea unui email ‑ 4</figcaption></figure>
+                <figure><img src="./screen_images/publish_email.png" alt="Click on publish icon"><figcaption><span>3.12 </span>Publicarea unui email ‑ 1</figcaption></figure>
+                <figure><img src="./screen_images/publish_settings1.png" alt="Default settings for publishing an email"><figcaption><span>3.13 </span>Publicarea unui email ‑ 2</figcaption></figure>
+                <figure><img src="./screen_images/publish_settings2.png" alt="Personal settings for publishing an email"><figcaption><span>3.14 </span>Publicarea unui email ‑ 3</figcaption></figure>
+                <figure><img src="./screen_images/copy_link.png" alt="Copy link of published email"><figcaption><span>3.15 </span>Publicarea unui email ‑ 4</figcaption></figure>
             </div>
             <p>
                 Pentru c&#259; design-ul aplica&#355;iei web EMPub este compatibil cu o serie de dispozitive (telefon mobil, tablet&#259;, laptop), la diferite rezolu&#355;ii, dar &#351;i cu diferite browsere (Chrome, Opera, Microsoft Edge, Firefox), exemplific&#259;m mai jos utilizarea aplica&#355;iei pe dispozitive mobile și tabletă:
             </p>
             <div class="mobile">
-                <figure><img src="./screen_images/publish_queue_mobile.png" alt="Publish queue page from mobile device"><figcaption><span>3.17 </span>Coada de publicare pe telefonul mobil</figcaption></figure>
-                <figure><img src="./screen_images/menu_mobile.png" alt="Menu from mobile device"><figcaption><span>3.18 </span>Meniul pe telefonul mobil</figcaption></figure>
-                <figure><img src="./screen_images/email_mobile.png" alt="Content of an email from a mobile device"><figcaption><span>3.19 </span>Con&#355;inutul unui email pe telefonul mobil</figcaption></figure>
-                <figure><img src="./screen_images/publish_mobile.png" alt="Publish email from a mobile device"><figcaption><span>3.20 </span>Publicarea unui email de pe telefonul mobil</figcaption></figure>
+                <figure><img src="./screen_images/publish_queue_mobile.png" alt="Publish queue page from mobile device"><figcaption><span>3.16 </span>Coada de publicare pe telefonul mobil</figcaption></figure>
+                <figure><img src="./screen_images/menu_mobile.png" alt="Menu from mobile device"><figcaption><span>3.17 </span>Meniul pe telefonul mobil</figcaption></figure>
+                <figure><img src="./screen_images/email_mobile.png" alt="Content of an email from a mobile device"><figcaption><span>3.18 </span>Con&#355;inutul unui email pe telefonul mobil</figcaption></figure>
+                <figure><img src="./screen_images/publish_mobile.png" alt="Publish email from a mobile device"><figcaption><span>3.19 </span>Publicarea unui email de pe telefonul mobil</figcaption></figure>
             </div>
             <div>
-                <figure><img src="./screen_images/tablet.jpg" alt="Content of an email from a tablet"><figcaption><span>3.21 </span>Con&#355;inutul unui email pe tablet&#259;</figcaption></figure>
+                <figure><img src="./screen_images/tablet.jpg" alt="Content of an email from a tablet"><figcaption><span>3.20 </span>Con&#355;inutul unui email pe tablet&#259;</figcaption></figure>
             </div>
             <p>
                 &#206;n special pentru interfa&#355;a pentru desktop &#351;i laptop, a fost ad&#259;ugat&#259; facilitatea apari&#355;iei de explica&#355;ii suplimentare asociate simbolurilor reprezent&#226;nd butoane, care sunt afi&#351;ate la trecerea cu mouse-ul peste acestea din urm&#259;, a&#351;a cum se poate remarca &#238;n imaginile de mai jos:
             </p>
             <div class="explanations">
-                <figure><img src="./screen_images/publish_explanation.png" alt="Explanation associated with publish symbol"><figcaption><span>3.22 </span>Explica&#355;ie asociat&#259; simbolului de publicare</figcaption></figure>
-                <figure><img src="./screen_images/stats_view_explanation1.png" alt="Explanation associated with statistics symbol - content of email page"><figcaption><span>3.23 </span>Explica&#355;ie asociat&#259; simbolului de vizualizare a statisticilor &#238;n cadrul paginilor de listare a email‑urilor</figcaption></figure>
-                <figure><img src="./screen_images/delete_explanation.png" alt="Explanation associated with delete symbol"><figcaption><span>3.24 </span>Explica&#355;ie asociat&#259; simbolului de &#351;tergere</figcaption></figure>
-                <figure><img src="./screen_images/stats_view_explanation2.png" alt="Explanation associated with publish symbol - mailing list page"><figcaption><span>3.25 </span>Explica&#355;ie asociat&#259; simbolului de vizualizare a statisticilor &#238;n cadrul paginilor de vizualizare a email‑urilor</figcaption></figure>
+                <figure><img src="./screen_images/publish_explanation.png" alt="Explanation associated with publish symbol"><figcaption><span>3.21 </span>Explica&#355;ie asociat&#259; simbolului de publicare</figcaption></figure>
+                <figure><img src="./screen_images/stats_view_explanation1.png" alt="Explanation associated with statistics symbol - content of email page"><figcaption><span>3.22 </span>Explica&#355;ie asociat&#259; simbolului de vizualizare a statisticilor &#238;n cadrul paginilor de listare a email‑urilor</figcaption></figure>
+                <figure><img src="./screen_images/delete_explanation.png" alt="Explanation associated with delete symbol"><figcaption><span>3.23 </span>Explica&#355;ie asociat&#259; simbolului de &#351;tergere</figcaption></figure>
+                <figure><img src="./screen_images/stats_view_explanation2.png" alt="Explanation associated with publish symbol - mailing list page"><figcaption><span>3.24 </span>Explica&#355;ie asociat&#259; simbolului de vizualizare a statisticilor &#238;n cadrul paginilor de vizualizare a email‑urilor</figcaption></figure>
             </div>
             </section>
         <section id="hardware_interfaces">
@@ -605,12 +620,33 @@
                     <li>stocarea temporar&#259; a codurilor de verificare pentru autentificare (p&#226;n&#259; la deconectare sau p&#226;n&#259; la expirarea acestora &#238;n caz de neutilizare la timp);</li>
                     <li>stocarea adreselor de email corespunz&#259;toare conturilor utilizatorilor, care se actualizeaz&#259; la crearea de noi conturi;</li>
                     <li>stocarea, pentru fiecare utilizator, a titlurilor &#351;i con&#355;inuturilor email‑urilor din cele 3 colec&#355;ii aflate la &#238;ndem&#226;na sa, care se actualizeaz&#259; la publicarea, ad&#259;ugarea &#238;n colec&#355;ie sau &#351;tergerea unui email;</li>
-                    <li>stocarea set&#259;rilor de stare asociate unui email (publicat/nepublicat, public/privat, parolat/neparolat, disponibil pe perioad&#259; de timp nedefinit&#259;/cu durat&#259; de timp predefinit&#259;), care se actualizeaz&#259; la trimiterea unui email c&#259;tre <i>empub@gmail.com</i>, la publicarea unui email sau la &#351;tergerea unui email publicat;</li>
+                    <li>stocarea set&#259;rilor de stare asociate unui email (publicat/nepublicat, public/privat, parolat/neparolat, disponibil pe perioad&#259; de timp nedefinit&#259;/cu durat&#259; de timp predefinit&#259;), care se actualizeaz&#259; la trimiterea unui email c&#259;tre <i>emailpublisher1@gmail.com</i>, la publicarea unui email sau la &#351;tergerea unui email publicat;</li>
                     <li>stocarea num&#259;rului de vizitatori &#351;i a &#355;&#259;rilor acestora de origine, care se actualizeaz&#259; la fiecare vizit&#259; efectuat&#259; asupra unui email publicat;</li>
                     <li>interogarea bazei de date &#238;n vederea ob&#355;inerii de informa&#355;ii &#238;n func&#355;ie de datele stocate mai sus (de exemplu, despre existen&#355;a unui anumit cont).</li>
                 </ul>
             <p>
                 &#206;n privin&#355;a detaliilor mai concrete de implementare (mai ales pe partea de back‑end) a proiectului, acestea urmeaz&#259; a fi stabilite.
+            </p>
+
+            <p>
+                Microserviciile sunt:
+                <ol>
+                    <li><strong>Serviciul robot de email</strong> ce constă în:
+                        <ul>
+                            <li>citirea email-urilor noi din folderul <i>INBOX</i> de la adresa controlată de aplicație <i>emailpublisher1@gmail.com</i> și adăugarea lor în baza de date, în limbajul Java</li>
+                            <li>trimitearea unui email cu un cod de verificare de la adresa controlată de aplicație <i>emailpublisher1@gmail.com</i> la adresa de email a celui care dorește să se autentifice în aplicație, în limbajul Java</li>
+                            <li>ștergerea email-urilor publicate a căror durată de publicare a expirat prin ștergerea din baza de date a email-ului respectiv, în limbajul Java</li>
+                            <li>autentificarea utilizatorilor în mod sigur prin JWT-uri ascoiate fiecărei sesiuni, stocate în cookie-uri pe clienți, în limbajul PHP</li>
+                            <li>afișarea unor liste de email-uri din paginile <i>Publish queue</i>, <i>Published emails</i> și <i>Archived emails</i> prin citirea informațiilor din baza de date, în limbajul PHP</li>
+                            <li>afișarea conținutului unui email prin citirea informațiilor din baza de date, în limbajul PHP</li>
+                            <li>ștergerea email-urilor din paginile <i>Publish queue</i>, <i>Published emails</i> și <i>Archived emails</i> prin modificrea informațiilor din baza de date, în limbajul PHP</li>
+                            <li>publicarea unui email și setarea proprietăților publicării respective de către un utilizator prin adăugarea/modificarea de informații în baza de date, în limbajul PHP</li>
+                            <li>vizualizarea statisticilor</li>
+                        </ul>
+                    </li>
+                    <li><strong>Serviciul pentru interfața aplicației</strong> ce constă în apelarea serviciilor oferite de robotul de email și afișarea informațiilor dorite de către utilizatori în interfața aplicației.</li>
+                    <li><strong>Serviciul pentru modulul de administrare</strong> ce constă în oferirea posibilității administratorilor aplicației să vizualizeze lista utilizatorilor existenți, a email-urilor deținute de aceștia, precum și să șteargă utilizatori și email-uri din baza de date.</li>
+                </ol>
             </p>
         </section>
         <section id="communicatins_interfaces">
@@ -646,13 +682,8 @@
                     <li>introduce o adres&#259; valid&#259; de email cu care dore&#351;te s&#259; se autentifice &#351;i de pe care a trimis sau inten&#355;ioneaz&#259; s&#259; trimit&#259; email‑uri ce se doresc a fi publicate (sau pur &#351;i simplu o adres&#259; de email valid&#259; &#238;n cazul &#238;n care dore&#351;te doar s&#259; adauge la colec&#355;ie publica&#355;ia unui alt utilizator)</li>
                     <li>apas&#259; butonul <i>Continue</i> ce &#238;l va redirec&#355;iona c&#259;tre pagina care cere introducerea unui cod de verificare</li>
                     <li>introduce codul de verificare primit pe adresa de email furnizat&#259; la pasul anterior</li>
-                    <li>apas&#259; butonul <i>Continue</i> ce &#238;l va redirec&#355;iona c&#259;tre pagina care cere selectarea &#355;&#259;rii de origine/re&#351;edin&#355;&#259;</li>
-                    <li>selecteaz&#259; &#355;ara de origine/re&#351;edin&#355;&#259; din lista oferit&#259;</li>
-                    <li>apas&#259; buonul <i>Continue</i> ce &#238;l va redirec&#355;iona c&#259;tre pagina <i>Publish queue</i></li>
+                    <li>apas&#259; buonul <i>Continue</i> ce &#238;l va redirec&#355;iona c&#259;tre pagina <i>Publish queue</i>.</li>
                 </ol>
-                <p>
-                    O metod&#259; alternativ&#259; luat&#259; &#238;n considerare pentru ob&#355;inerea &#355;&#259;rii de origine a utilizatorului este deducerea acesteia din adresa IP, folosind un API extern.
-                </p>
                 <p>
                     Dac&#259; email‑ul furnizat nu este valid &#351;i/sau dac&#259; codul de verificare introdus nu corespunde cu cel primit pe adresa de email furnizat&#259;, utilizatorul va fi notificat &#238;n acest sens &#238;n momentul &#238;n care apas&#259; butonul <i>Continue</i> &#351;i nu va fi redirec&#355;ionat c&#259;tre urm&#259;toarea pagin&#259; p&#226;n&#259; c&#226;nd nu introduce datele corecte corespunz&#259;toare.
                 </p>
@@ -692,7 +723,7 @@
                     Un utilizator poate publica un email &#355;in&#226;nd cont de urm&#259;toarea secven&#355;&#259; de pa&#351;i:
                 </p>
                 <ol>
-                    <li>trimiterea email-ului pe care dore&#351;te s&#259; &#238;l publice cu ajutorul aplica&#355;iei web EMPub la adresa <i>empub@gmail.com</i> controlat&#259; de aceasta</li>
+                    <li>trimiterea email-ului pe care dore&#351;te s&#259; &#238;l publice cu ajutorul aplica&#355;iei web EMPub la adresa <i>emailpublisher1@gmail.com</i> controlat&#259; de aceasta</li>
                     <li>autentificarea &#238;n aplica&#355;ie cu adresa de pe care s-a trimis email-ul ce se dore&#351;te a fi publicat</li>
                     <li>accesarea paginii <i>Publish queue</i> unde se va reg&#259;si email-ul trimis la adresa controlat&#259; de aplica&#355;ie</li>
                     <li>ap&#259;sarea butonului <img src="./assets/publish.svg" alt="Publish"> ce va redirec&#355;iona utilizatorul c&#259;tre o pagin&#259; pentru setarea propriet&#259;&#355;ilor email-ului ce se dore&#351;te a fi publicat</li>
@@ -834,7 +865,7 @@
                 La momentul &#238;ncerc&#259;rii autentific&#259;rii cu o anumit&#259; adres&#259; de email, utilizatorul va primi pe adresa de email furnizat&#259; un cod de verificare unic pentru acel interval de timp (se va stabili un interval de timp de circa 15 minute de valabilitate a codurilor de verificare), pe care doar el &#238;l va putea folosi pentru a intra &#238;n aplica&#355;ie. Cum adresele de email sunt unice, nimeni altcineva nu &#238;i va putea accesa contul din aplica&#355;ie, &#351;i deci nimeni altcineva nu va avea acces la email‑urile asociate contului s&#259;u &#351;i la informa&#355;iile pe care acestea le con&#355;in.
             </p>
             <p>
-                &#206;n ceea ce prive&#351;te trimiterea unui email c&#259;tre contul asociat aplica&#355;iei (<i>empub@gmail.com</i>), aplica&#355;ia asigur&#259; c&#259; acesta nu va fi distribuit c&#259;tre nici o alt&#259; adres&#259; de email &#351;i va fi folosit doar &#238;n scopul intern al public&#259;rii acestuia de c&#259;tre utilizator, la cererea acestuia prin selectare din coada de publicare. 
+                &#206;n ceea ce prive&#351;te trimiterea unui email c&#259;tre contul asociat aplica&#355;iei (<i>emailpublisher1@gmail.com</i>), aplica&#355;ia asigur&#259; c&#259; acesta nu va fi distribuit c&#259;tre nici o alt&#259; adres&#259; de email &#351;i va fi folosit doar &#238;n scopul intern al public&#259;rii acestuia de c&#259;tre utilizator, la cererea acestuia prin selectare din coada de publicare. 
             </p>
         </section>
         <section id="attributes">
