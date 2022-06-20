@@ -11,6 +11,9 @@
         <div class="button">
             <button type="submit" id="users" onclick="window.location.href='http://localhost:8181/public/GetUsers/index'">Users</button>
         </div>
+        <div class="button" id="logoutBtn">
+            <button type="submit" id="logout" onclick="window.location.href='#'">Logout</button>
+        </div>
 
         <form action="">
             <label for="name">Email</label><br>

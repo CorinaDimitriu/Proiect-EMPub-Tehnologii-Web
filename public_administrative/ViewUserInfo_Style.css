@@ -42,7 +42,7 @@ body .button {
     position: fixed;
 }
 
-body button[id='users'] {
+body button[id='users'], button[id='logout'] {
     height: 4vw;
     width: 12vw;
     font-size: 3vw;
@@ -51,6 +51,15 @@ body button[id='users'] {
     clip-path: polygon(20% 0%, 100% 0%, 100% 50%, 80% 100%, 0% 100%, 0% 50%);
     border: 0.2vw solid black;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body button[id='logout']{
+    width: 12vw;
+}
+
+body .button[id='logoutBtn'] {
+    right: 0;
+    margin-right: 10px;
 }
 
 body .button:hover {
