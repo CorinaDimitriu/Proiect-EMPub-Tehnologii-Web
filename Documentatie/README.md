@@ -1,1 +1,0 @@
-Raportul Scholarly HTML.
