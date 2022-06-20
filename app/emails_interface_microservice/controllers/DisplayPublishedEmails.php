@@ -1,7 +1,4 @@
 <?php
-require_once '../emails_interface_microservice/models/User.php';
-require_once '../emails_interface_microservice/models/Email.php';
-require_once '../emails_interface_microservice/models/MailCollection.php';
 class DisplayPublishedEmails extends Controller
 {
     public function index($email = '') {

@@ -1,10 +1,8 @@
 <?php
-require_once '../emails_interface_microservice/models/User.php';
-require_once '../emails_interface_microservice/models/Email.php';
-require_once '../emails_interface_microservice/models/MailCollection.php';
 class PublishEmail extends Controller
 {
     public function index($email = '', $privacy = '', $duration = '', $hours = '0', $minutes = '0', $seconds = '0', $password = '') {
+        $email = $_POST['email'];
         $privacy = $_POST['privacy'];
         $duration = $_POST['duration'];
         $hours = $_POST['hours'];
@@ -33,7 +31,7 @@ class PublishEmail extends Controller
         curl_setopt($c, CURLOPT_HTTPHEADER, ['Content-Type:application/json']);
         $res = curl_exec($c);
         curl_close($c);
-        $this->view('home/Share', $res);
+        $this->view('home/Share', $email);
    }
 }
 ?>
