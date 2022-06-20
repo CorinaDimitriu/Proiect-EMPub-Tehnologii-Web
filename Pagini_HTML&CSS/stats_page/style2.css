@@ -1,0 +1,143 @@
+body {
+    background: linear-gradient(30deg, rgb(154, 181, 230) 25%, rgb(172, 127, 243) 50%, rgb(197, 125, 255) 75%);
+    margin:0;
+    padding:0;
+    display:flex;
+}
+
+#navmenu{
+    display:flex;
+    width:fit-content;
+    max-width: 200px;
+    background-color: white;
+    flex-direction: column;
+    height:100vh;
+}
+
+#navmenu-small{
+    display:none;
+    width:fit-content;
+    max-width: 200px;
+    background-color: white;
+    flex-direction: column;
+    height:100vh;
+}
+
+.nav-fullwidth-btn{
+    align-self: flex-end;
+    width:100%;
+    height:95px;
+    align-items: center;
+    display:flex;
+    flex-direction: row;
+
+}
+
+@media screen and (max-width: 621px) {
+    div>p>strong{
+        display:none;
+    }
+    #navmenu{
+        max-width: 64px;
+    }
+    .nav-fullwidth-btn{
+        height: 64px;
+    }
+}
+
+.nav-fullwidth-btn:hover{
+    background: linear-gradient(30deg, rgb(197, 125, 255) 10%, rgb(172, 127, 243) 50%, rgb(154, 181, 230) 90%);
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-shadow: inset 0px 2px 10px rgb(226, 223, 228);
+}
+
+.nav-fullwidth-btn:active{
+    background: gray;
+}
+
+.nav-fullwidth-btn>p{
+    width:fit-content;
+    height: fit-content;
+    margin:auto;
+    align-self: center;
+}
+
+#emaildisplay{
+    width:100%;
+    height:100vh;
+    display:flex;
+    flex-direction: column;
+
+    overflow: scroll;
+}
+
+header{
+    margin-left:auto;
+    margin-right:auto;
+    height:fit-content;
+    padding:12px;
+    font-size: x-large;
+    background-color: rgb(234,234,234);
+    align-self: flex-start;
+    position: relative;
+    margin-top: 0.75%;
+    transform: rotate(1.2deg);
+    border: 2px solid #16082f;
+    box-shadow: 5px 5px 3px #16082f, -2px -2px 3px #16082f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#stats{
+    display:flex;
+    flex-direction: row;
+    /*border:2px solid black;*/
+    padding:64px;
+    padding-top:0px;
+}
+
+canvas {
+    background-color: rgb(234,234,234);
+    width:fit-content;
+    max-width: 50%;
+    margin-top: 32px;
+    align-self: flex-start;
+    border: 1px solid #16082f;
+    border-radius: 25px;
+    padding: 5%;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 3px #16082f, -1px -1px 1px #534a63;
+}
+
+#loadmore-btn{
+    border-radius: 32px;
+    margin:auto;
+    margin-top:32px;
+    width:fit-content;
+    padding:16px;
+    font-size: xx-large;
+}
+
+#loadmore-btn:active{
+    background-color: gray;
+}
+
+#emaildisplay>div>select{
+    border-radius: 32px;
+    margin:auto;
+    margin-top:32px;
+    width:fit-content;
+    
+    padding:16px;
+    font-size: xx-large;
+}
+
+#emaildisplay>div>button{
+    border-radius: 32px;
+    margin:auto;
+    margin-top:32px;
+    width:fit-content;
+    padding:16px;
+    font-size: xx-large;
+}
