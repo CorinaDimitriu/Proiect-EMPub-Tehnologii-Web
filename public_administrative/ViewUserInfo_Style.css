@@ -1,0 +1,271 @@
+html, body {
+    margin: 0; 
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+html {
+    background: linear-gradient(15deg, rgba(130,129,241,1) 25%, rgba(137,98,199,1) 50%, rgba(144,70,161,1) 75%);
+    background-attachment: fixed;
+}
+
+body .own, .archived {
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+    overflow-y: scroll; 
+    margin-top: 5vh;
+    height: auto;
+    max-height: 60vh;
+}
+
+body .archived {
+    margin-bottom: 5vh;
+}
+  
+body .own::-webkit-scrollbar, .archived::-webkit-scrollbar {
+    display: none; 
+}
+
+body button {
+    cursor: pointer;
+}
+
+body .button {
+    background: linear-gradient(23deg, rgba(196,215,245,1) 25%, rgba(133,212,242,1) 50%, rgba(196,215,245,1) 75%);
+    text-align: center;
+    height: fit-content;
+    width: fit-content;
+    margin-left: 10px;
+    margin-top: 1.99vw;
+    margin-bottom: 1vw;
+    border: 0.2vw solid black;
+    position: fixed;
+}
+
+body button[id='users'] {
+    height: 4vw;
+    width: 12vw;
+    font-size: 3vw;
+    color:white;
+    background-color: #8a2be2;
+    clip-path: polygon(20% 0%, 100% 0%, 100% 50%, 80% 100%, 0% 100%, 0% 50%);
+    border: 0.2vw solid black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body .button:hover {
+    box-shadow: 0px 0px 1.2em #85d4f2;
+}
+
+body .button:active {
+    transform: translateY(0.2em);
+}
+
+body form {
+    background: linear-gradient(30deg, rgb(154, 181, 230) 25%, rgb(172, 127, 243) 50%, rgb(197, 125, 255) 75%);
+    background-attachment: fixed;
+
+    margin-top: 50px;
+    width: 40vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: darkblue;
+    box-shadow: 0.25em 0.25em 0.5em #16082f, -0.12em -0.12em 0.5em #16082f;
+    text-align: center;
+}
+
+body form label {
+    display: inline-block;
+    font-size: 2vw;
+    margin-top: 2vh;
+}
+
+body form input {
+    background-color: #EAEAEA;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-radius: 2vw;
+    height: 3vw;
+    width: 34vw;
+    font-size: 2vw;
+    text-align: center;
+}
+
+body form input[id='code'] {
+    width: 10vw;
+    margin-bottom: 2vh;
+}
+
+body form button {
+    width: auto;
+    height: 3vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    font-size: 2vw;
+}
+
+body form button[id='edit']:disabled {
+    color: gray;
+    background-color: #E0E0E0;
+}
+
+body form button[id='save']:disabled {
+    background-color: #8FD085;
+}
+
+body form button[id='cancel']:disabled {
+    background-color: #F06578;
+}
+
+body form button[id='save']:enabled {
+    background-color: #15C93F;
+}
+
+body form button[id='save']:enabled:hover {
+    background-color: #10942E;
+}
+
+body form button[id='save']:enabled:active {
+    background-color: #15C93F;
+}
+
+body form button[id='cancel']:enabled {
+    background-color: red;
+}
+
+body form button[id='cancel']:enabled:hover {
+    background-color: #BC1313;
+}
+
+body form button[id='cancel']:enabled:active {
+    background-color: red;
+}
+
+body table {
+    background-color: #B1D7F9;
+
+    margin-top: 50px;
+    width: 70vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: darkblue;
+    box-shadow: 0.25em 0.25em 0.5em #16082f, -0.12em -0.12em 0.5em #16082f;
+}
+
+body .archived table {
+    width: 40vw;
+}
+
+body table tr:nth-child(even) {
+    background-color: rgb(172, 127, 243);
+}
+
+body table th, table td {
+    border: 1px solid gray;
+}
+
+body table th {
+    color: white;
+    background-color: #8a2be2;
+    background-attachment: fixed;
+    position: sticky;
+    top: 0;
+    font-size: 4vh;
+}
+
+body table td {
+    font-size: 3vh;
+    text-align: center;
+}
+
+body table button {
+    display: block; 
+    text-align: center; 
+    margin: auto;
+    border-radius: 5px;
+    font-weight: bolder;
+}
+
+body table button[id='edit'] {
+    background-color: #15C93F;
+}
+
+body table button[id='edit']:hover {
+    background-color: #10942E;
+}
+
+body table button[id='edit']:active {
+    background-color: #15C93F;
+}
+
+body table button[id='delete'] {
+    background-color: red;
+}
+
+body table button[id='delete']:hover {
+    background-color: #BC1313;
+}
+
+body table button[id='delete']:active {
+    background-color: red;
+}
+/* 
+@media screen and (min-width: 1500px) and (max-width: 1700px) {
+    body {
+        width: 50vw;
+    }
+
+    body button {
+        width: 15vw;
+    }
+}
+
+@media screen and (min-width: 1001px) and (max-width: 1499px) {
+    body {
+        width: 70vw;
+    }
+
+    body button {
+        width: 18vw;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 1000px) {
+    body {
+        width: 70vw;
+        border-radius: 6em;
+    }
+
+    body input {
+        width: 28vw;
+    }
+
+    body button {
+        width: 35vw;
+    }
+}
+
+@media screen and (max-width: 499px) {
+    body {
+        width: 80vw;
+        border-radius: 4em;
+    }
+
+    body input {
+        width: 28vw;
+    }
+
+    body button {
+        width: 50vw;
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 180px) {
+    body form label {
+        margin-left: 4px;
+        font-size: 16px;
+    }
+} */
