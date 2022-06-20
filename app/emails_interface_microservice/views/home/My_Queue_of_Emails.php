@@ -16,16 +16,13 @@
     <nav id="menu">
       <ul class = "left_side_menu">
         <li id="menu_closer"><img class = "logo" src = "../../assets/logo_for_menu.svg" alt="logo at original size"/></li>
-        <li><a href="http://localhost:1080/public/DisplayUnpublishedEmails/index?email=emailpublisher1@gmail.com&noPage=1&noSections=
-        <?php
-          echo $_COOKIE["number_of_mails"];
-        ?>">
+        <li><a href="http://localhost:1080/public/DisplayUnpublishedEmails/index?noPage=1&noSections=<?php if(isset ($_COOKIE['number_of_mails'])) {echo $_COOKIE['number_of_mails'];} else echo '6';?>">
         <img src="../../assets/queue.svg" alt="icon for publishing queue"/><strong>Publish queue</strong></a></li>
         <li><a href="../../My_Published_Emails.html"><img src="../../assets/published.svg" alt="icon for published emails"/><strong>Published emails</strong></a></li>
         <li><a href="../../My_Archived_Emails.html"><img src="../../assets/unpublished.svg" alt="icon for emails which were published by other people and which this user can visualise"/><strong>Archived emails</strong></a></li>
         <li><img src="../../assets/divider.svg" alt="menu divider (in 2 categories)"/></li>
         <li><a href="../../Scholarly_Documentation.html"><img src="../../assets/about.svg" alt="icon for html scholarly report"/><strong>About us</strong></a></li>
-        <li><a href="../../index.html"><img src="../../assets/logout.svg" alt="icon for logout"/><strong>Logout</strong></a></li>
+        <li><a href="http://localhost:1818/public/Logout/index"><img src="../../assets/logout.svg" alt="icon for logout"/><strong>Logout</strong></a></li>
       </ul>
     </nav>
     <header>
@@ -36,10 +33,17 @@
       <div class="explanation" id="explanation_publish"><p>Publish</p></div>
       <?php
         header('Content-Type: text/html; charset=utf-8');
+        if(isset ($_COOKIE['number_of_mails'])) 
+          $noSections = $_COOKIE['number_of_mails'];
+        else $noSections = 6;
         $arrayMails = json_decode($data, TRUE);
-        for($i = 0; $i < sizeof($arrayMails); $i++) {
+        if(sizeof($arrayMails) > 1) {
+        $mini = sizeof($arrayMails) - 1;
+        if($noSections < $mini)
+        $mini = $noSections;
+        for($i = 1; $i <= $mini; $i++) {
             echo "<section class=";
-            switch($i + 1) {
+            switch($i) {
                 case 1: echo "\"first-email\">"; break;
                 case 2: echo "\"second-email\">"; break;
                 case 3: echo "\"third-email\">"; break;
@@ -54,90 +58,56 @@
             if(strlen($title) > 20) {
                 $title = substr($title, 0, 20) . '...';
             }
-            echo "<h2><a href=\"../../Email_Template.html\">"; echo $title; echo "</a></h2>";
-            echo "<p><a href=\"../../Email_Template.html\">Click to view content of email...</a></p>";
-            echo "<div class=\"icons\">
-            <a href=\"../../Publish_Settings.html\"><img src=\"../../assets/publish.svg\" alt=\"view statistics option\" id=\"publish1\"/></a>
-            <img src=\"../../assets/delete.svg\" alt=\"delete option\" id=\"delete1\"/>
-            </div></section>";
+            echo "<h2><form id=\"emailFormTitle". ($i)."\""." action=\"http://localhost:1080/public/DisplayEmailContent/index\"" . " method=\"post\">".
+            "<p><a href=\"javascript:;\" onclick=\"document.getElementById('emailFormTitle" . ($i) . "').submit();"."\">"; /*echo substr(ltrim($digest->text), 0, 50);*/ echo $title . "</a></p>".
+            "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
+            "<input type=\"hidden\" name=\"emailTitle\" value=\"" . $arrayMails[$i]['subject'] . "\"/>" .
+            "<input type=\"hidden\" name=\"emailSender\" value=\"" . $arrayMails[$i]['user']['email'] . "\"/>" .
+            "</form></h2>";
+            
+            /*$request_as_string = "https://extractorapi.com/api/v1/extractor/?apikey=8a9fa86f24a4577a8f7d297fa1cfdd2a9f0bcef6&url=".'https://0622-2a02-2f0e-5614-a000-f852-bb83-de1c-ddc.eu.ngrok.io/public/GetEmailContent/index?emailName='.$arrayMails[$i]["contentFile"];
+            $c = curl_init ();
+            curl_setopt ($c, CURLOPT_URL, $request_as_string);              // stabilim URL-ul serviciului
+            curl_setopt ($c, CURLOPT_RETURNTRANSFER, true);  // rezultatul cererii va fi disponibil ca șir de caractere
+            curl_setopt ($c, CURLOPT_SSL_VERIFYPEER, false); // nu verificam certificatul digital
+            curl_setopt($c, CURLOPT_HTTPHEADER, [
+                'Content-Type:application/json'
+            ]);
+            $res = curl_exec ($c);
+            $digestArray = json_decode($res, TRUE);
+            while(!isset($digestArray['text'])) {
+              $res = curl_exec ($c);
+              $digestArray = json_decode($res, TRUE);
+            }  
+            $digest = json_decode($res);               
+            curl_close ($c);*/
+            echo "<form id=\"emailFormPreview". ($i)."\""." action=\"http://localhost:1080/public/DisplayEmailContent/index\"" . " method=\"post\">".
+            "<p><a href=\"javascript:;\" onclick=\"document.getElementById('emailFormPreview" . ($i) . "').submit();"."\">"; /*echo substr(ltrim($digest->text), 0, 50);*/ echo "...<br>Click to view full content of email...</a></p>".
+            "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
+            "<input type=\"hidden\" name=\"emailTitle\" value=\"" . $arrayMails[$i]['subject'] . "\"/>" .
+            "<input type=\"hidden\" name=\"emailSender\" value=\"" . $arrayMails[$i]['user']['email'] . "\"/>" .
+            "</form>";
+            echo "<div class=\"icons\">".
+            "<form id=\"emailFormPublish". ($i)."\""." action=\"http://localhost:1080/public/PublishSettings/index\"" . " method=\"post\">".
+            "<a href=\"javascript:;\" onclick=\"document.getElementById('emailFormPublish" . ($i) . "').submit();"."\">"; echo "<img src=\"../../assets/publish.svg\" alt=\"view publish option\" id=\"publish".($i)."\"/></a>".
+            "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
+            "</form>";
+            echo "<form id=\"emailFormDelete". ($i)."\""." action=\"http://localhost:1080/public/DeleteFromPublishQueue/index\"" . " method=\"post\">".
+            "<a href=\"javascript:;\" onclick=\"document.getElementById('emailFormDelete" . ($i) . "').submit();"."\">"; echo "<img src=\"../../assets/delete.svg\" alt=\"delete option\" id=\"delete".($i)."\"/></a>".
+            "<input type=\"hidden\" name=\"emailName\" value=\"" . $arrayMails[$i]['contentFile'] . "\"/>" .
+            "</form>";
+            echo "</div></section>";
+          }
         }
-      ?>
-      <!---<section class="first-email" id="first-email">
-        <h2><a href="../../Email_Template.html">Title of email</a></h2>
-        <p><a href="../../Email_Template.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non odio sit amet orci molestie tempor vitae non sapien....</a></p>
-        <div class="icons">
-          <a href="../../Publish_Settings.html"><img src="../../assets/publish.svg" alt="view statistics option" id="publish1"/></a>
-          <img src="../../assets/delete.svg" alt="delete option" id="delete1"/>
-        </div>
-      </section>
-      <section class="second-email" id="second-email">
-        <h2><a href="../../Email_Template.html">Title of email</a></h2>
-        <p><a href="../../Email_Template.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non odio sit amet orci molestie tempor vitae non sapien...</a></p>
-        <div class="icons">
-          <a href="../../Publish_Settings.html"><img src="../../assets/publish.svg" alt="view statistics option" id="publish2"/></a>
-          <img src="../../assets/delete.svg" alt="delete option" id="delete2"/>
-        </div>
-      </section>
-      <section class="third-email" id="third-email">
-        <h2><a href="../../Email_Template.html">Title of email</a></h2>
-        <p><a href="../../Email_Template.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non odio sit amet orci molestie tempor vitae non sapien...</a></p>
-        <div class="icons">
-          <a href="../../Publish_Settings.html"><img src="../../assets/publish.svg" alt="view statistics option" id="publish3"/></a>
-          <img src="../../assets/delete.svg" alt="delete option" id="delete3"/>
-        </div>
-      </section>
-      <section class="fourth-email" id="fourth-email">
-        <h2><a href="../../Email_Template.html">Title of email</a></h2>
-        <p><a href="../../Email_Template.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non odio sit amet orci molestie tempor vitae non sapien...</a></p>
-        <div class="icons">
-          <a href="../../Publish_Settings.html"><img src="../../assets/publish.svg" alt="view statistics option" id="publish4"/></a>
-          <img src="../../assets/delete.svg" alt="delete option" id="delete4"/>
-        </div>
-      </section>
-      <section class="fifth-email" id="fifth-email">
-        <h2><a href="../../Email_Template.html">Title of email</a></h2>
-        <p><a href="../../Email_Template.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non odio sit amet orci molestie tempor vitae non sapien...</a></p>
-        <div class="icons">
-          <a href="../../Publish_Settings.html"><img src="../../assets/publish.svg" alt="view statistics option" id="publish5"/></a>
-          <img src="../../assets/delete.svg" alt="delete option" id="delete5"/>
-        </div>
-      </section>
-      <section class="sixth-email" id="sixth-email">
-        <h2><a href="../../Email_Template.html">Title of email</a></h2>
-        <p><a href="../../Email_Template.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non odio sit amet orci molestie tempor vitae non sapien...</a></p>
-        <div class="icons">
-          <a href="../../Publish_Settings.html"><img src="../../assets/publish.svg" alt="view statistics option" id="publish6"/></a>
-          <img src="../../assets/delete.svg" alt="delete option" id="delete6"/>
-        </div>
-      </section>
-      <section class="seventh-email" id="seventh-email">
-        <h2><a href="../../Email_Template.html">Title of email</a></h2>
-        <p><a href="../../Email_Template.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non odio sit amet orci molestie tempor vitae non sapien...</a></p>
-        <div class="icons">
-          <a href="../../Publish_Settings.html"><img src="../../assets/publish.svg" alt="view statistics option" id="publish7"/></a>
-          <img src="../../assets/delete.svg" alt="delete option" id="delete7"/>
-        </div>
-      </section>
-      <section class="eigth-email" id="eigth-email">
-        <h2><a href="../../Email_Template.html">Title of email</a></h2>
-        <p><a href="../../Email_Template.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non odio sit amet orci molestie tempor vitae non sapien...</a></p>
-        <div class="icons">
-          <a href="../../Publish_Settings.html"><img src="../../assets/publish.svg" alt="view statistics option" id="publish8"/></a>
-          <img src="../../assets/delete.svg" alt="delete option" id="delete8"/>
-        </div>
-      </section>
-      <section class="nineth-email" id="nineth-email">
-        <h2><a href="../../Email_Template.html">Title of email</a></h2>
-        <p><a href="../../Email_Template.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non odio sit amet orci molestie tempor vitae non sapien...</a></p>
-        <div class="icons">
-          <a href="../../Publish_Settings.html"><img src="../../assets/publish.svg" alt="view statistics option" id="publish9"/></a>
-          <img src="../../assets/delete.svg" alt="delete option" id="delete9"/>
-        </div>
-      </section>--->
-    </main>
+    $next = $arrayMails[0] + 1;
+    if(sizeof($arrayMails) === 1) {
+      $next = $arrayMails[0];
+    }
+    echo "</main>
     <footer>
-      <a href="#"><img src="../../assets/arrow.svg" alt="arrow to previous page"/></a>
-      <a href="#"><img src="../../assets/arrow.svg" alt="arrow to next page"/></a>
-    </footer>
+      <a href=\"http://localhost:1080/public/DisplayUnpublishedEmails/index?noPage=". $arrayMails[0] - 1 . "&noSections=" . $_COOKIE["number_of_mails"] ."\"><img src=\"../../assets/arrow.svg\" alt=\"arrow to previous page\"/></a>
+      <a href=\"http://localhost:1080/public/DisplayUnpublishedEmails/index?noPage=". $next . "&noSections=" . $_COOKIE["number_of_mails"]."\"><img src=\"../../assets/arrow.svg\" alt=\"arrow to next page\"/></a>
+    </footer>"
+    ?>
   </body>
 </html>

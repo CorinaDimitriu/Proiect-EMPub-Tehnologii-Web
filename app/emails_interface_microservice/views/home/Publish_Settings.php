@@ -5,13 +5,13 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>EMPub</title>
         <link rel="stylesheet" href="../../Publish_Style.css">
-        <!-- <script src="../../Validate.js" type="module"></script> -->
     </head>
     
     <body>
         <p>Please set up a few things before you go:</p>
 
         <form method="post" action="">
+            <input type="hidden" name="email" value=<?php echo json_decode($data);?>>
             <label id="privacy">Privacy:</label><br>
 
             <input type="radio" id="public" name="privacy" value="Public" checked>
@@ -68,11 +68,11 @@
 
             <div class="button">
                 <button type="submit" id="publish" 
-                formaction="http://localhost:1080/public/PublishEmail/index?<?php echo "email=" . json_decode($data);?>" 
+                formaction="http://localhost:1080/public/PublishEmail/index/" 
                 onclick="return validate()">Publish</button><br>
             </div>
             <div class="button quit">
-                <button type="submit" id="quit">Quit</button>
+                <button type="submit" id="quit" formaction="http://localhost:1080/public/DisplayUnpublishedEmails/index?noPage=1&noSections=6">Quit</button>
             </div>
         </form>
     </body>
