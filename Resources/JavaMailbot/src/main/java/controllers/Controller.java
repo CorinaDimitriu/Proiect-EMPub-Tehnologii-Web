@@ -13,9 +13,9 @@ public class Controller {
         if (args.length == 0) {
             new GetMails(con);
         } else if (args.length == 1) {
-            new UnpublishExpiredMailsDAO();
-        } else if (args.length == 2) {
-            new SendMail(args[0], Integer.parseInt(args[1]), con);
+            new UnpublishedExpiredMailsDAO();
+        } else if (args.length == 3) {
+            new SendMail(args[0], args[1], args[2], con);
         } else {
             System.out.println("Wrong number of parameters.");
             System.exit(1);

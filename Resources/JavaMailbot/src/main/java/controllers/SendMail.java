@@ -7,9 +7,9 @@ import javax.mail.internet.*;
 import java.util.Date;
 
 public class SendMail {
-    public SendMail(String toAddress, int verificationCode, ConnectionProperties con) throws MessagingException {
+    public SendMail(String toAddress, String verificationCode, String officialCode, ConnectionProperties con) throws MessagingException {
         String subject = "Cod verificare";
-        String message = "Codul de verificare pentru autentificarea la EmPub este: " + verificationCode + ".";
+        String message = "Codul de verificare pentru autentificarea la EmPub este: " + officialCode + ".";
 
         Message mail = new MimeMessage(con.getMailSession());
         mail.setFrom(new InternetAddress(con.getUsername()));

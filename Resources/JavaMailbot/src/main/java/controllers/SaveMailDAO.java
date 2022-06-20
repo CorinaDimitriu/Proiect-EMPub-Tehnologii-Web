@@ -14,6 +14,21 @@ import java.sql.*;
 public class SaveMailDAO {
 
     public SaveMailDAO(String email, String subject, String content) throws IOException {
+        SaveCodeDAO saveCode = new SaveCodeDAO();
+        if(!saveCode.existsMail(email)) {
+            try (
+                    Connection con = Database.getConnection();
+                    PreparedStatement preparedStatement = con.prepareStatement(
+                            "INSERT INTO users(email) VALUES(?)")) {
+                preparedStatement.setString(1, email);
+                preparedStatement.executeUpdate();
+                con.commit();
+                Database.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
         int numberOfEmails = countEmails(email) + 1;
         if (subject.length() > 100) {
             subject = subject.substring(0, 99);
