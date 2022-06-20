@@ -19,16 +19,17 @@ CREATE TABLE usermails(
   privacy VARCHAR2(10) DEFAULT 'Public',
   password VARCHAR2(100),
   duration DATE,
-  CONSTRAINT check_yesno CHECK (published IN (0,1))
+  CONSTRAINT check_yesno CHECK (published IN (0,1)),
+  CONSTRAINT fk_user FOREIGN KEY(user_email) references users(email)
 )
 /
 
 CREATE TABLE friendsmails(
     user_email VARCHAR2(320) NOT NULL,
-    subject VARCHAR2(103),
-    content_email VARCHAR2(500)
+    content_email VARCHAR2(500),
+    CONSTRAINT fk_user_friend FOREIGN KEY(user_email) references users(email),
+    CONSTRAINT fk_content_friend FOREIGN KEY(content_email) references usermails(content_email),
+    CONSTRAINT unique_user_mail UNIQUE (user_email,content_email)
 )
 /
-
-select * from usermails;
 
