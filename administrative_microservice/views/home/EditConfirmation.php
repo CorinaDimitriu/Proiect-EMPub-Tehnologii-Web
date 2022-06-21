@@ -13,10 +13,10 @@
         <p><strong>Published</strong>: <?php echo $data[3] == 1 ? 'Yes' : 'No';?></p>
         <p><strong>Privacy</strong>: <?php echo $data[4]?></p>
         <p><strong>Password</strong>: <?php echo $data[5]?></p>
-        <p><strong>Duration</strong>: <?php echo $data[6]?></p>
+        <p><strong>Duration</strong>: <?php echo $data[6] === "-" ? "-" : $data[6];?></p>
         <div class="buttons">
             <div class="button">
-                <button type="button" id="goback" onclick="window.location.href='http://localhost:8181/public/ViewUser/index?email=<?php echo $data[0];?>&code=<?php echo $data[1];?>'">Go back to users</button>
+                <button type="button" id="goback" onclick="window.location.href='http://localhost:8001/public/ViewUser/index?email=<?php echo $data[0];?>&code=<?php echo $data[1];?>'">Go back to users</button>
             </div>
         </div>
     </body>

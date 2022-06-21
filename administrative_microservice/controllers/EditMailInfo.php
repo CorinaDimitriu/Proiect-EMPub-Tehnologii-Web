@@ -7,11 +7,26 @@ class EditMailInfo extends Controller
         $privacy = $_POST['privacy'];
         $password = $_POST['password'];
         $duration = $_POST['duration'];
+        if($duration === '-') {
+            date_default_timezone_set('Europe/Bucharest');
+            $date = date("h:i:sa");
+            $duration = date('Y-m-d H:i:s', strtotime($date. ' + 10 years'));
+        }
 
         $conn = oci_connect("mailbot", "MAILBOT", "localhost/xe",'AL32UTF8');
         $this->changeInfo($conn, $content, $published, $privacy, $password, $duration);
         oci_close($conn);
         $this->view('home/EditConfirmation', array($email, $code, $content, $published, $privacy, $password, $duration));
+        // if($duration !== '-') {
+        //     $this->changeInfo($conn, $content, $published, $privacy, $password, $duration);
+        //     oci_close($conn);
+        //     $this->view('home/EditConfirmation', array($email, $code, $content, $published, $privacy, $password, $duration));
+        // }
+        // else {
+        //     $this->changeInfo($conn, $content, $published, $privacy, $password, null);
+        //     oci_close($conn);
+        //     $this->view('home/EditConfirmation', array($email, $code, $content, $published, $privacy, $password, '-'));
+        // }
     }
 
     private function changeInfo($conn, String $content, String $published, String $privacy, String $password, $duration) {

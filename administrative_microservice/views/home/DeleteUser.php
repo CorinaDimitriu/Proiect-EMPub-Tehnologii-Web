@@ -13,10 +13,10 @@
        echo $data;?></strong> and all the emails associated with it.</p>
        <div class="buttons">
             <div class="button">
-                <button type="button" onclick="window.location.href='http://localhost:8181/public/GetUsers/index'">Cancel</button>
+                <button type="button" onclick="window.location.href='http://localhost:8001/public/GetUsers/index'">Cancel</button>
             </div>
             <div class="button">
-                <button type="button" onclick="window.location.href='http://localhost:8181/public/DeleteUser/index?email=<?php echo $data;?>'">Confirm</button>
+                <button type="button" onclick="window.location.href='http://localhost:8001/public/DeleteUser/index?email=<?php echo $data;?>'">Confirm</button>
             </div>
         </div>
     </body>

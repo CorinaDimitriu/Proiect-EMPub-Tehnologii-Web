@@ -12,7 +12,7 @@
        echo $data;?></strong>.</p>
         <div class="buttons">
             <div class="button">
-                <button type="button" id="goback" onclick="window.location.href='http://localhost:8181/public/GetUsers/index'">Go back to users</button>
+                <button type="button" id="goback" onclick="window.location.href='http://localhost:8001/public/GetUsers/index'">Go back to users</button>
             </div>
         </div>
     </body>

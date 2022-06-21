@@ -8,10 +8,10 @@
     </head>
     <body>
         <div class="button">
-            <button type="submit" id="users" onclick="window.location.href='http://localhost:8181/public/GetUsers/index'">Users</button>
+            <button type="submit" id="users" onclick="window.location.href='http://localhost:8001/public/GetUsers/index'">Users</button>
         </div>
         <div class="button" id="logoutBtn">
-            <button type="submit" id="logout" onclick="window.location.href='#'">Logout</button>
+            <button type="submit" id="logout" onclick="window.location.href='http://localhost:1818/public/Logout/index'">Logout</button>
         </div>
 
         <form action="">
@@ -40,15 +40,16 @@
                 </tr>
                 <?php 
                     $dataArray = json_decode($data);
+                    if($dataArray) {
                     for($i = 0; $i < sizeof($dataArray[2]); $i++)
                         echo "<tr>". 
                         "<td>" . $dataArray[2][$i]->{'subject'} . "</td>".
-                        "<td><a href='#' target='_blank'>" . $dataArray[2][$i]->{'content'} . "</a></td>" . 
+                        "<td><a href='http://localhost:8001/public/GetEmailContent/index?emailName=" . $dataArray[2][$i]->{'content'} ."' target='_blank'>" . $dataArray[2][$i]->{'content'} . "</a></td>" . 
                         "<td>" . $dataArray[2][$i]->{'published'} . "</td>" . 
                         "<td>" . $dataArray[2][$i]->{'privacy'} . "</td>" . 
                         "<td>" . $dataArray[2][$i]->{'password'} . "</td>" . 
                         "<td>" . $dataArray[2][$i]->{'duration'} . "</td>" . 
-                        "<td><button type='submit' id='edit' onclick=\"window.location.href='http://localhost:8181/public/GoToEditPage/index?email=" . $dataArray[0] . 
+                        "<td><button type='submit' id='edit' onclick=\"window.location.href='http://localhost:8001/public/GoToEditPage/index?email=" . $dataArray[0] . 
                         "&code=" . $dataArray[1] . 
                         "&subject=" . $dataArray[2][$i]->{'subject'} . 
                         "&content=" . $dataArray[2][$i]->{'content'} .
@@ -56,7 +57,8 @@
                         "&privacy=" . $dataArray[2][$i]->{'privacy'} .
                         "&password=" . $dataArray[2][$i]->{'password'} . 
                         "&duration=" . $dataArray[2][$i]->{'duration'}. "'\">Edit</button></td>" . 
-                        "<td><button type='submit' id='delete' onclick=\"window.location.href='http://localhost:8181/public/DeleteEmail/index?content=" . $dataArray[2][$i]->{'content'} . "'\">Delete</button></td> </tr>"; 
+                        "<td><button type='submit' id='delete' onclick=\"window.location.href='http://localhost:8001/public/DeleteEmail/index?content=" . $dataArray[2][$i]->{'content'} . "'\">Delete</button></td> </tr>"; 
+                    }
                 ?>
             </table>
         </div>
@@ -70,11 +72,13 @@
                 </tr>
                 <?php 
                     $dataArray = json_decode($data);
+                    if($dataArray) {
                     for($i = 0; $i < sizeof($dataArray[3]); $i++)
                         echo "<tr>". 
                         "<td>" . $dataArray[3][$i]->{'subject'} . "</td>".
-                        "<td><a href='#' target='_blank'>" . $dataArray[3][$i]->{'content'} . "</a></td>" .  
-                        "<td><button type='submit' id='delete' onclick=\"window.location.href='http://localhost:8181/public/DeleteArchivedEmail/index?email=" . $dataArray[0] ."&content=" . $dataArray[3][$i]->{'content'} . "'\">Delete</button></td> </tr>"; 
+                        "<td><a href='http://localhost:8001/public/GetEmailContent/index?emailName=" . $dataArray[3][$i]->{'content'} . "' target='_blank'>" . $dataArray[3][$i]->{'content'} . "</a></td>" .  
+                        "<td><button type='submit' id='delete' onclick=\"window.location.href='http://localhost:8001/public/DeleteArchivedEmail/index?email=" . $dataArray[0] ."&content=" . $dataArray[3][$i]->{'content'} . "'\">Delete</button></td> </tr>"; 
+                    }
                 ?>
             </table>
         </div>

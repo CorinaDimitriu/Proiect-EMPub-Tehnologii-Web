@@ -31,7 +31,8 @@ class ViewUser extends Controller
                 $password = openssl_decrypt($encryption, $ciphering, $decryption_key, $options, $decryption_iv);
            }
            $email->setPassword($password);
-           $email->setDuration($row['TIME']);
+           $time = $row['TIME'] === null ? "-" : $row['TIME'];
+           $email->setDuration($time);
            array_push($emails, $email);
         }
         return $emails;
@@ -39,14 +40,20 @@ class ViewUser extends Controller
 
     public function getFriendsEmails($conn, $email) {
         $emails = array();
-        $sql = "SELECT subject, content_email FROM friendsmails WHERE user_email = :email";
+        $sql = "SELECT content_email FROM friendsmails WHERE user_email = :email";
         $stid = oci_parse($conn, $sql);
         oci_bind_by_name($stid, ':email', $email);
         oci_execute($stid);
         while(($row = oci_fetch_array($stid)) != false) {
            $email = new Email();
-           $email->setSubject($row['SUBJECT']);
+           $sql = "SELECT subject FROM usermails WHERE content_email = :content_email";
+           $stid1 = oci_parse($conn, $sql);
+           oci_bind_by_name($stid1, ':content_email', $row['CONTENT_EMAIL']);
            $email->setMailContentFile($row['CONTENT_EMAIL']);
+           oci_execute($stid1);
+           if(($row1 = oci_fetch_array($stid1)) != false) {
+            $email->setSubject($row1['SUBJECT']);
+           }
            array_push($emails, $email);
         }
         return $emails;

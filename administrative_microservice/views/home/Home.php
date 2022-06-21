@@ -8,10 +8,10 @@
     </head>
     <body>
         <div class="button">
-            <button type="submit" id="users" onclick="window.location.href='http://localhost:8181/public/GetUsers/index'">Users</button>
+            <button type="submit" id="users" onclick="window.location.href='http://localhost:8001/public/GetUsers/index'">Users</button>
         </div>
         <div class="button" id="logoutBtn">
-            <button type="submit" id="logout" onclick="window.location.href='#'">Logout</button>
+            <button type="submit" id="logout" onclick="window.location.href='http://localhost:1818/public/Logout/index'">Logout</button>
         </div>
         <div class="table">
             <table>
@@ -25,8 +25,8 @@
                     $dataArray = json_decode($data);
                     for($i = 0; $i < sizeof($dataArray); $i++)
                         echo "<tr><td>" . $dataArray[$i]->{'email'} . "</td><td>" . $dataArray[$i]->{'code'} . "</td>" . 
-                        "<td><button type='button' id='view' onclick=\"window.location.href='http://localhost:8181/public/ViewUser/index?email=" . $dataArray[$i]->{'email'} . "&code=" . $dataArray[$i]->{'code'} . "'\">View info</button></td>" . 
-                        "<td><button type='button' id='delete' onclick=\"window.location.href='http://localhost:8181/public/GoToDeletePage/index?email=" . $dataArray[$i]->{'email'} ."'\">Delete</button></td> </tr>"; 
+                        "<td><button type='button' id='view' onclick=\"window.location.href='http://localhost:8001/public/ViewUser/index?email=" . $dataArray[$i]->{'email'} . "&code=" . $dataArray[$i]->{'code'} . "'\">View info</button></td>" . 
+                        "<td><button type='button' id='delete' onclick=\"window.location.href='http://localhost:8001/public/GoToDeletePage/index?email=" . $dataArray[$i]->{'email'} ."'\">Delete</button></td> </tr>"; 
                 ?>
             </table>
         </div>

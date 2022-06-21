@@ -35,7 +35,7 @@ function verifyData() {
 
   var dateFormat =
     /^\d{4}-(0[1-9]|1[0-2])-([0-2]\d|3[01]) ([0-1]\d|2[0123]):[0-5]\d:[0-5]\d$/;
-  if (!dateFormat.test(duration.value))
+  if (!dateFormat.test(duration.value) && duration.value!=='-')
     message = message.concat("Date format must be yyyy-mm-dd hh:mi:ss.");
 
   if (message !== "") {

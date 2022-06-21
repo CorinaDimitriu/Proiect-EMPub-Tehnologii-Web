@@ -30,10 +30,10 @@
             <input type="text" id="duration" name="duration" value="<?php echo $data[7];?>" required><br>
 
             <div class="button">
-                <button type="submit" formaction='http://localhost:8181/public/ViewUser/index?email=<?php echo $data[0];?>&code=<?php echo $data[1];?>'>Cancel</button>
+                <button type="submit" formaction='http://localhost:8001/public/ViewUser/index?email=<?php echo $data[0];?>&code=<?php echo $data[1];?>'>Cancel</button>
             </div>
             <div class="button">
-                <button type="submit" onclick='return verifyData()' formaction='http://localhost:8181/public/EditMailInfo/index?email=<?php echo $data[0];?>&code=<?php echo $data[1];?>&content=<?php echo $data[3];?>'>Confirm</button>
+                <button type="submit" onclick='return verifyData()' formaction='http://localhost:8001/public/EditMailInfo/index?email=<?php echo $data[0];?>&code=<?php echo $data[1];?>&content=<?php echo $data[3];?>'>Confirm</button>
             </div>
         </form>
     </body>
