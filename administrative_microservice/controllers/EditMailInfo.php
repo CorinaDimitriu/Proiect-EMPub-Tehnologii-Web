@@ -15,11 +15,17 @@ class EditMailInfo extends Controller
     }
 
     private function changeInfo($conn, String $content, String $published, String $privacy, String $password, $duration) {
-        $sql = "UPDATE usermails SET published = :published, privacy = :privacy, password = :password, duration = to_date(:duration, 'yyyy-mm-dd hh24:mi:ss') WHERE content_email = :content";
+        $ciphering = "AES-128-CTR";
+        $iv_length = openssl_cipher_iv_length($ciphering);
+        $options = 0;
+        $encryption_iv = '1234567891011121';
+        $encryption_key = "empubEnc";
+        $encryption = openssl_encrypt($password, $ciphering, $encryption_key, $options, $encryption_iv);
+        $sql = "UPDATE usermails SET published = :published, privacy = :privacy, password = :encryption, duration = to_date(:duration, 'yyyy-mm-dd hh24:mi:ss') WHERE content_email = :content";
         $stid = oci_parse($conn, $sql);
         oci_bind_by_name($stid, ":published", $published);
         oci_bind_by_name($stid, ":privacy", $privacy);
-        oci_bind_by_name($stid, ":password", $password);
+        oci_bind_by_name($stid, ":encryption", $encryption);
         oci_bind_by_name($stid, ":duration", $duration);
         oci_bind_by_name($stid, ":content", $content);
         oci_execute($stid);

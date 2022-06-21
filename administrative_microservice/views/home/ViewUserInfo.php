@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>Admin Panel</title>
         <link rel="stylesheet" href="../../ViewUserInfo_Style.css">
-        <!-- <script src="../../EditUserInfo.js"></script> -->
     </head>
     <body>
         <div class="button">

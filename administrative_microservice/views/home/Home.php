@@ -25,8 +25,8 @@
                     $dataArray = json_decode($data);
                     for($i = 0; $i < sizeof($dataArray); $i++)
                         echo "<tr><td>" . $dataArray[$i]->{'email'} . "</td><td>" . $dataArray[$i]->{'code'} . "</td>" . 
-                        "<td><button type='submit' id='view' onclick=\"window.location.href='http://localhost:8181/public/ViewUser/index?email=" . $dataArray[$i]->{'email'} . "&code=" . $dataArray[$i]->{'code'} . "'\">View info</button></td>" . 
-                        "<td><button type='submit' id='delete' onclick=\"window.location.href='http://localhost:8181/public/GoToDeletePage/index?email=" . $dataArray[$i]->{'email'} ."'\">Delete</button></td> </tr>"; 
+                        "<td><button type='button' id='view' onclick=\"window.location.href='http://localhost:8181/public/ViewUser/index?email=" . $dataArray[$i]->{'email'} . "&code=" . $dataArray[$i]->{'code'} . "'\">View info</button></td>" . 
+                        "<td><button type='button' id='delete' onclick=\"window.location.href='http://localhost:8181/public/GoToDeletePage/index?email=" . $dataArray[$i]->{'email'} ."'\">Delete</button></td> </tr>"; 
                 ?>
             </table>
         </div>

@@ -17,12 +17,20 @@ class ViewUser extends Controller
         oci_bind_by_name($stid, ':email', $email);
         oci_execute($stid);
         while(($row = oci_fetch_array($stid)) != false) {
-           $email = new Email();
-           $email->setSubject($row['SUBJECT']);
-           $email->setMailContentFile($row['CONTENT_EMAIL']);
-           $email->setPublished($row['PUBLISHED'] == 0 ? "No" : "Yes");
-           $email->setPrivacy($row['PRIVACY']);
-           $email->setPassword($row['PASSWORD'] === '' ? "none" : $row['PASSWORD']);
+            $email = new Email();
+            $email->setSubject($row['SUBJECT']);
+            $email->setMailContentFile($row['CONTENT_EMAIL']);
+            $email->setPublished($row['PUBLISHED'] == 0 ? "No" : "Yes");
+            $email->setPrivacy($row['PRIVACY']);
+            $password = $row['PASSWORD'] === null ? "none" : $row['PASSWORD'];
+            if($password !== "none") {
+                $ciphering = "AES-128-CTR"; $options = 0; $iv_length = openssl_cipher_iv_length($ciphering);
+                $encryption = $password;
+                $decryption_iv = '1234567891011121';
+                $decryption_key = "empubEnc";
+                $password = openssl_decrypt($encryption, $ciphering, $decryption_key, $options, $decryption_iv);
+           }
+           $email->setPassword($password);
            $email->setDuration($row['TIME']);
            array_push($emails, $email);
         }
