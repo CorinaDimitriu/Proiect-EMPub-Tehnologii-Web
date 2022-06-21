@@ -44,7 +44,7 @@
                     for($i = 0; $i < sizeof($dataArray[2]); $i++)
                         echo "<tr>". 
                         "<td>" . $dataArray[2][$i]->{'subject'} . "</td>".
-                        "<td><a href='#' target='_blank'>" . $dataArray[2][$i]->{'content'} . "</a></td>" . 
+                        "<td><a href='http://localhost:8001/public/GetEmailContent/index?emailName=" . $dataArray[2][$i]->{'content'} ."' target='_blank'>" . $dataArray[2][$i]->{'content'} . "</a></td>" . 
                         "<td>" . $dataArray[2][$i]->{'published'} . "</td>" . 
                         "<td>" . $dataArray[2][$i]->{'privacy'} . "</td>" . 
                         "<td>" . $dataArray[2][$i]->{'password'} . "</td>" . 
@@ -76,7 +76,7 @@
                     for($i = 0; $i < sizeof($dataArray[3]); $i++)
                         echo "<tr>". 
                         "<td>" . $dataArray[3][$i]->{'subject'} . "</td>".
-                        "<td><a href='#' target='_blank'>" . $dataArray[3][$i]->{'content'} . "</a></td>" .  
+                        "<td><a href='http://localhost:8001/public/GetEmailContent/index?emailName=" . $dataArray[3][$i]->{'content'} . "' target='_blank'>" . $dataArray[3][$i]->{'content'} . "</a></td>" .  
                         "<td><button type='submit' id='delete' onclick=\"window.location.href='http://localhost:8001/public/DeleteArchivedEmail/index?email=" . $dataArray[0] ."&content=" . $dataArray[3][$i]->{'content'} . "'\">Delete</button></td> </tr>"; 
                     }
                 ?>
